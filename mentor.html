@@ -3,68 +3,83 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mentor Registration</title>
+  <title>Register as Mentor</title>
 
   <style>
     body {
       background-color: #f6f8fb;
       color: #0f172a;
       font-family: sans-serif;
+      margin: 0;
+      padding: 0;
     }
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
+
+    header {
+      background-color: #0b2a5b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .main-container {
+      text-align: center;
       padding: 50px;
     }
+
     .btn {
       background-color: #0b2a5b;
       color: white;
-      font-size: 16px;
-      padding: 10px 20px;
+      font-size: 18px;
+      padding: 15px 25px;
       border-radius: 12px;
-      text-align: center;
-      text-decoration: none;
+      margin: 15px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      border: none;
     }
+
     .btn:hover {
       background-color: #123a78;
     }
 
-    .section-heading {
-      font-size: 24px;
-      font-weight: bold;
-      color: #0b2a5b;
+    .description {
+      background-color: #caa048;
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 30px;
     }
 
-    .section-content {
-      font-size: 16px;
-      margin-top: 10px;
-      color: #475569;
-    }
-
-    .decorative-section {
-      background-color: #f1e4c3;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
+    footer {
+      background-color: #0b2a5b;
+      color: white;
+      padding: 10px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Register as a Mentor</h1>
-    <p>Help guide the next generation of engineers and technologists!</p>
+  <header>
+    <h1>ENTC Mentorship Portal</h1>
+    <p>Department of Electronics & Telecommunication</p>
+  </header>
 
-    <!-- Decorative section about ENTC Department -->
-    <div class="decorative-section">
-      <h2 class="section-heading">About ENTC</h2>
-      <p class="section-content">The Department of Electronics & Telecommunication (ENTC) offers cutting-edge academic programs, fostering innovation and research in the field of electronics and communications.</p>
+  <div class="main-container">
+    <h2>Register as a Mentor</h2>
+    <p>We invite professionals to become mentors and guide the next generation of engineers.</p>
+
+    <button class="btn" onclick="window.location.href='https://forms.gle/SXxJkKuGGXNpZUMh9'">Click Here to Register</button>
+
+    <div class="description">
+      <h3>About the Mentorship Program</h3>
+      <p>The ENTC Mentorship Program connects students with industry professionals and alumni to guide them in their academic and career pursuits. The program is organized by the E-Club of the University of Moratuwa, Main Branch (ER/IR pillar).</p>
     </div>
-
-    <!-- Mentor Registration Button -->
-    <a href="https://forms.gle/SXxJkKuGGXNpZUMh9" class="btn">Click Here to Register</a>
   </div>
+
+  <footer>
+    <p>For queries: <span>entc-rahmanmfa.23@uom.lk</span></p>
+    <p>© 2026 ENTC Department</p>
+  </footer>
 </body>
 </html>
