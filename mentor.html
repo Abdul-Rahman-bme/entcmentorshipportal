@@ -3,83 +3,203 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register as Mentor</title>
+  <title>Mentor Details - ENTC Mentorship Portal</title>
+  <meta name="description" content="Mentor details and information about ENTC and E-Club." />
 
   <style>
-    body {
-      background-color: #f6f8fb;
-      color: #0f172a;
-      font-family: sans-serif;
+    /* Reuse previous CSS, keeping the same structure and styles */
+    :root{
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+      --primary: #0b2a5b;
+      --primary-2: #123a78;
+      --accent: #caa048;
+      --accent-2: #f1e4c3;
+      --radius: 18px;
+      --radius-sm: 14px;
+      --ring: 0 0 0 4px rgba(11, 42, 91, .12);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
       margin: 0;
-      padding: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
     }
 
-    header {
-      background-color: #0b2a5b;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{ width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,248,251,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226,232,240,.75);
     }
 
-    .main-container {
-      text-align: center;
-      padding: 50px;
+    .topbar-inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 14px;
     }
 
-    .btn {
-      background-color: #0b2a5b;
-      color: white;
-      font-size: 18px;
-      padding: 15px 25px;
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 230px;
+    }
+
+    .crest{
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
-      margin: 15px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      border: none;
-    }
-
-    .btn:hover {
-      background-color: #123a78;
-    }
-
-    .description {
-      background-color: #caa048;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
       color: white;
-      padding: 30px;
-      border-radius: 12px;
-      margin-top: 30px;
+      box-shadow: 0 10px 18px rgba(11,42,91,.18);
+      border: 1px solid rgba(255,255,255,.25);
     }
 
-    footer {
-      background-color: #0b2a5b;
-      color: white;
-      padding: 10px;
+    .crest svg{ width: 22px; height: 22px; opacity: .96; }
+
+    .brand-text{
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.2;
+    }
+
+    .brand-text strong{
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+
+    .brand-text span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero{
+      padding: 32px 0 18px;
       text-align: center;
+    }
+
+    .hero-inner{
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .hero-card{
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    h1{
+      font-size: clamp(26px, 3vw, 36px);
+      margin: 0 0 10px;
+      letter-spacing: -.4px;
+    }
+
+    .hero-actions{
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .card{
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: calc(var(--radius) + 2px);
+      box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 18px 38px rgba(2,6,23,.10); border-color: rgba(11,42,91,.22); }
+
+    .card-top{
+      padding: 14px 14px 10px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .avatar{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16));
+      border: 1px solid rgba(226,232,240,.9);
+      font-weight: 800;
+      color: var(--primary);
+      flex: none;
+    }
+
+    .card h3{
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: -.1px;
+    }
+
+    .sub{
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>ENTC Mentorship Portal</h1>
-    <p>Department of Electronics & Telecommunication</p>
+  <header class="topbar" role="banner">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="ENTC Mentorship Portal Home">
+          <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
+            <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
+          </div>
+          <div class="brand-text">
+            <strong>ENTC Mentorship Portal</strong>
+            <span>Department of Electronics & Telecommunication</span>
+          </div>
+        </a>
+      </div>
+    </div>
   </header>
 
-  <div class="main-container">
-    <h2>Register as a Mentor</h2>
-    <p>We invite professionals to become mentors and guide the next generation of engineers.</p>
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-inner">
+            <h1>Welcome Mentors</h1>
+            <p>Learn more about the ENTC Department and the E-Club.</p>
 
-    <button class="btn" onclick="window.location.href='https://forms.gle/SXxJkKuGGXNpZUMh9'">Click Here to Register</button>
-
-    <div class="description">
-      <h3>About the Mentorship Program</h3>
-      <p>The ENTC Mentorship Program connects students with industry professionals and alumni to guide them in their academic and career pursuits. The program is organized by the E-Club of the University of Moratuwa, Main Branch (ER/IR pillar).</p>
-    </div>
-  </div>
-
-  <footer>
-    <p>For queries: <span>entc-rahmanmfa.23@uom.lk</span></p>
-    <p>© 2026 ENTC Department</p>
-  </footer>
-</body>
-</html>
+            <div class="hero-actions">
+              <
