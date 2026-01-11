@@ -3,19 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Discover Mentors - ENTC Mentorship Portal</title>
-</head>
-<body>
-  <header>
-    <h1>Find a Mentor</h1>
-    <p>Discover mentors who can guide you in your academic and professional journey.</p>
-  </header>
+  <title>Discover Mentors</title>
 
-  <main>
-    <section id="mentorList">
-      <h2>Available Mentors</h2>
-      <div id="mentorCards"></div>
-    </section>
-  </main>
+  <style>
+    /* Same dark theme as other pages */
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: sans-serif;
+    }
+    .btn {
+      background-color: #0b2a5b;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #123a78;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="text-align:center; padding:50px;">
+    <h1>Explore Mentors</h1>
+    <p>Discover mentors who are available to guide you!</p>
+    <a href="https://forms.gle/U3sNkYMNo1QJHpGo6" class="btn">Request Mentorship</a>
+  </div>
+
+  <section id="mentorList">
+    <!-- Dynamic list of mentors will be populated here -->
+  </section>
 </body>
 </html>
