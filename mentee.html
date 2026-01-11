@@ -3,101 +3,98 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Discover Mentors</title>
+  <title>Request Mentorship</title>
 
   <style>
     body {
       background-color: #f6f8fb;
       color: #0f172a;
       font-family: sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
+    header {
+      background-color: #0b2a5b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .main-container {
+      text-align: center;
       padding: 50px;
     }
 
     .btn {
       background-color: #0b2a5b;
       color: white;
-      font-size: 16px;
-      padding: 10px 20px;
+      font-size: 18px;
+      padding: 15px 25px;
       border-radius: 12px;
-      text-align: center;
-      text-decoration: none;
+      margin: 15px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      border: none;
     }
 
     .btn:hover {
       background-color: #123a78;
     }
 
-    .card {
-      background: rgba(255, 255, 255, .88);
-      border: 1px solid rgba(226, 232, 240, .9);
-      border-radius: 18px;
+    .mentor-card {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
       padding: 20px;
-      margin: 10px;
-      box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
-      display: flex;
-      flex-direction: column;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      text-align: left;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .card-header {
-      font-size: 18px;
-      font-weight: bold;
-      color: var(--primary);
+    .mentor-card:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .card-subheader {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .card-body {
-      margin-top: 10px;
-    }
-
-    .tag {
-      padding: 6px 12px;
-      background: rgba(15, 23, 42, .04);
-      border-radius: 999px;
-      font-size: 12px;
-      color: #334155;
-      border: 1px solid rgba(226, 232, 240, .9);
-      margin-right: 8px;
-    }
-
-    .tag.primary {
-      background: rgba(11, 42, 91, .08);
-      border-color: rgba(11, 42, 91, .20);
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .tag.gold {
-      background: rgba(202, 160, 72, .13);
-      border-color: rgba(202, 160, 72, .30);
-      color: #6b4e10;
-      font-weight: 700;
+    footer {
+      background-color: #0b2a5b;
+      color: white;
+      padding: 10px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Discover Mentors</h1>
-    <p>Browse mentors based on your areas of interest and request mentorship.</p>
+  <header>
+    <h1>ENTC Mentorship Portal</h1>
+    <p>Department of Electronics & Telecommunication</p>
+  </header>
+
+  <div class="main-container">
+    <h2>Request Mentorship</h2>
+    <p>Browse our mentors and request mentorship in your areas of interest.</p>
+
+    <button class="btn" onclick="window.location.href='https://forms.gle/U3sNkYMNo1QJHpGo6'">Request Mentorship</button>
 
     <!-- Mentor Directory -->
-    <div id="mentorList" class="mentor-list">
-      <!-- Dynamic mentor cards go here -->
+    <div class="mentor-card">
+      <h3>Mentor: A. Deshmukh</h3>
+      <p><strong>Role:</strong> Embedded Systems Engineer at Bosch</p>
+      <p><strong>Availability:</strong> Available</p>
+      <button class="btn" onclick="alert('More details about A. Deshmukh...')">View Details</button>
     </div>
-
-    <!-- Mentee Request Button -->
-    <a href="https://forms.gle/U3sNkYMNo1QJHpGo6" class="btn" target="_blank">Request Mentorship</a>
+    <div class="mentor-card">
+      <h3>Mentor: S. Perera</h3>
+      <p><strong>Role:</strong> RF Engineer at Dialog Axiata</p>
+      <p><strong>Availability:</strong> Limited</p>
+      <button class="btn" onclick="alert('More details about S. Perera...')">View Details</button>
+    </div>
   </div>
+
+  <footer>
+    <p>For queries: <span>entc-rahmanmfa.23@uom.lk</span></p>
+    <p>© 2026 ENTC Department</p>
+  </footer>
 </body>
 </html>
