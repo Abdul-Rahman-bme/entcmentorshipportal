@@ -6,16 +6,16 @@
   <title>Discover Mentors</title>
 
   <style>
-    /* Same dark theme as other pages */
     body {
-      background-color: #121212;
-      color: #ffffff;
+      background-color: #f6f8fb;
+      color: #0f172a;
       font-family: sans-serif;
     }
 
     .container {
       width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
+      padding: 50px;
     }
 
     .btn {
@@ -83,147 +83,21 @@
       color: #6b4e10;
       font-weight: 700;
     }
-
-    .filter-container {
-      margin: 20px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .filter-container select, .filter-container input {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(226, 232, 240, .9);
-      background-color: var(--surface);
-      color: var(--text);
-      font-size: 14px;
-    }
   </style>
 </head>
 
 <body>
-  <header class="topbar" role="banner">
-    <div class="container">
-      <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="ENTC Mentorship Portal Home">
-          <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
-            <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
-          </div>
-          <div class="brand-text">
-            <strong>ENTC Mentorship Portal</strong>
-            <span>Department of Electronics & Telecommunication</span>
-          </div>
-        </a>
-      </div>
+  <div class="container">
+    <h1>Discover Mentors</h1>
+    <p>Browse mentors based on your areas of interest and request mentorship.</p>
+
+    <!-- Mentor Directory -->
+    <div id="mentorList" class="mentor-list">
+      <!-- Dynamic mentor cards go here -->
     </div>
-  </header>
 
-  <main>
-    <section class="container">
-      <h1>Discover Mentors</h1>
-      <p class="lead">Browse mentors based on your areas of interest and request mentorship.</p>
-
-      <!-- Filter and Sorting Controls -->
-      <div class="filter-container">
-        <input type="search" id="search" placeholder="Search mentors by name, role, or interests">
-        <select id="sort">
-          <option value="name">Sort by Name (A–Z)</option>
-          <option value="year">Sort by Graduation Year</option>
-          <option value="availability">Sort by Availability</option>
-        </select>
-      </div>
-
-      <!-- Mentor Directory -->
-      <div id="mentorList" class="mentor-list">
-        <!-- Mentor cards will be inserted dynamically here -->
-      </div>
-
-      <!-- Mentee Request Button -->
-      <a href="https://forms.gle/U3sNkYMNo1QJHpGo6" class="btn" target="_blank">Request Mentorship</a>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>
-          <strong>ENTC Department</strong> · Mentorship Programme
-          <div class="meta">For queries: <span class="mono">entc-rahmanmfa.23@uom.lk</span></div>
-        </div>
-        <div class="meta">© <span id="yearNow"></span> · Maintain in <span class="mono">mentors[]</span> array</div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const mentors = [
-      { id: "m01", name: "A. Deshmukh", role: "Embedded Systems Engineer", org: "Bosch", gradYear: 2020, interests: ["Embedded", "IoT", "C/C++"], availability: "Available" },
-      { id: "m02", name: "S. Perera", role: "RF Engineer", org: "Dialog Axiata", gradYear: 2018, interests: ["Telecom", "RF", "5G"], availability: "Limited" },
-      { id: "m03", name: "N. Kulkarni", role: "MS/PhD Candidate", org: "University Research Lab", gradYear: 2022, interests: ["Higher Studies", "Research", "Signal Processing"], availability: "Available" },
-      { id: "m04", name: "R. Jayasinghe", role: "Data/ML Engineer", org: "Startup", gradYear: 2019, interests: ["AI/ML", "Python", "Computer Vision"], availability: "Available" },
-      { id: "m05", name: "P. Patil", role: "Hardware Design Engineer", org: "L&T Technology Services", gradYear: 2016, interests: ["VLSI", "PCB", "Electronics"], availability: "Limited" }
-    ];
-
-    // Sorting Function
-    function sortMentors(criteria) {
-      return mentors.sort((a, b) => {
-        if (criteria === "name") {
-          return a.name.localeCompare(b.name);
-        } else if (criteria === "year") {
-          return b.gradYear - a.gradYear;
-        } else if (criteria === "availability") {
-          const availabilityOrder = { "Available": 1, "Limited": 2, "Unavailable": 3 };
-          return availabilityOrder[a.availability] - availabilityOrder[b.availability];
-        }
-      });
-    }
-
-    // Rendering Mentor Cards
-    function renderMentors(sortedMentors) {
-      const mentorList = document.getElementById("mentorList");
-      mentorList.innerHTML = ""; // Clear existing list
-      sortedMentors.forEach(mentor => {
-        const mentorCard = document.createElement("div");
-        mentorCard.classList.add("card");
-
-        mentorCard.innerHTML = `
-          <div class="card-header">${mentor.name}</div>
-          <div class="card-subheader">${mentor.role} · ${mentor.org}</div>
-          <div class="card-body">
-            <div>
-              ${mentor.interests.map(interest => `<span class="tag">${interest}</span>`).join('')}
-            </div>
-            <div class="tag primary">${mentor.availability}</div>
-            <a href="#" class="ghost" onclick="viewDetails('${mentor.id}')">View Details</a>
-          </div>
-        `;
-        mentorList.appendChild(mentorCard);
-      });
-    }
-
-    // View Mentor Details (Pop-up or Redirect)
-    function viewDetails(mentorId) {
-      const mentor = mentors.find(m => m.id === mentorId);
-      alert(`Name: ${mentor.name}\nRole: ${mentor.role}\nGraduation Year: ${mentor.gradYear}\nAvailability: ${mentor.availability}\nInterests: ${mentor.interests.join(', ')}`);
-    }
-
-    // Handle Search
-    document.getElementById("search").addEventListener("input", (e) => {
-      const searchQuery = e.target.value.toLowerCase();
-      const filteredMentors = mentors.filter(m => m.name.toLowerCase().includes(searchQuery) || m.role.toLowerCase().includes(searchQuery));
-      renderMentors(filteredMentors);
-    });
-
-    // Handle Sorting
-    document.getElementById("sort").addEventListener("change", (e) => {
-      const sortedMentors = sortMentors(e.target.value);
-      renderMentors(sortedMentors);
-    });
-
-    // Initial render
-    renderMentors(mentors);
-  </script>
+    <!-- Mentee Request Button -->
+    <a href="https://forms.gle/U3sNkYMNo1QJHpGo6" class="btn" target="_blank">Request Mentorship</a>
+  </div>
 </body>
 </html>
