@@ -8,14 +8,24 @@
 
   <style>
     :root {
-      --bg: #121212;
-      --surface: #1e1e1e;
-      --text: #ffffff;
-      --muted: #b0b0b0;
-      --primary: #0b2a5b;
-      --primary-2: #123a78;
-      --accent: #caa048;
-      --accent-2: #f1e4c3;
+      --bg-light: #f6f8fb;
+      --surface-light: #ffffff;
+      --text-light: #0f172a;
+      --muted-light: #475569;
+      --primary-light: #0b2a5b;
+      --primary-2-light: #123a78;
+      --accent-light: #caa048;
+      --accent-2-light: #f1e4c3;
+
+      --bg-dark: #121212;
+      --surface-dark: #1e1e1e;
+      --text-dark: #ffffff;
+      --muted-dark: #b0b0b0;
+      --primary-dark: #0b2a5b;
+      --primary-2-dark: #123a78;
+      --accent-dark: #caa048;
+      --accent-2-dark: #f1e4c3;
+
       --radius: 18px;
       --radius-sm: 14px;
       --ring: 0 0 0 4px rgba(11, 42, 91, .12);
@@ -23,41 +33,61 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html, body {
       height: 100%;
       margin: 0;
       font-family: var(--sans);
-      color: var(--text);
-      background-color: var(--bg);
+      color: var(--text-light);
+      background-color: var(--bg-light);
       line-height: 1.5;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    a {
-      color: inherit;
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .btn {
+      background-color: var(--primary-light);
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-align: center;
       text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .btn:hover {
+      background-color: var(--primary-2-light);
     }
 
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
+    .dark-mode .btn {
+      background-color: var(--primary-dark);
     }
 
-    /* Top bar */
+    .dark-mode .btn:hover {
+      background-color: var(--primary-2-dark);
+    }
+
+    .hero {
+      padding: 32px 0 18px;
+    }
+
     .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(246,248,251,.88);
+      background: rgba(246, 248, 251, .88);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(226,232,240,.75);
+      border-bottom: 1px solid rgba(226, 232, 240, .75);
     }
 
     .topbar-inner {
@@ -68,179 +98,18 @@
       gap: 14px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 230px;
-    }
-
-    .crest {
-      width: 42px;
-      height: 42px;
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background-color: #f1e4c3;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      display: grid;
-      place-items: center;
-      color: white;
-      box-shadow: 0 10px 18px rgba(11,42,91,.18);
-      border: 1px solid rgba(255,255,255,.25);
-    }
-
-    .crest svg {
-      width: 22px;
-      height: 22px;
-      opacity: .96;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      line-height: 1.2;
-    }
-
-    .brand-text strong {
-      font-size: 14px;
-      letter-spacing: .2px;
-    }
-
-    .brand-text span {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .pill {
-      border: 1px solid var(--muted);
-      background: rgba(255,255,255,.8);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: var(--muted);
-      transition: transform .08s ease, border-color .15s ease, background .15s ease;
-      user-select: none;
-    }
-
-    .pill:hover {
-      transform: translateY(-1px);
-      border-color: rgba(11,42,91,.25);
-      background: #fff;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(11,42,91,.25);
-      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
-      color: var(--primary);
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 12px;
-      transition: transform .08s ease, box-shadow .15s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 25px rgba(11,42,91,.10);
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      border-color: rgba(11,42,91,.35);
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 14px 30px rgba(11,42,91,.18);
-    }
-
-    .hero {
-      padding: 32px 0 18px;
-    }
-
-    .hero-card {
-      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: calc(var(--radius) + 8px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 24px;
-      padding: 24px;
-      align-items: center;
-    }
-
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(202,160,72,.35);
-      background: rgba(202,160,72,.10);
-      color: #7a5a14;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: .2px;
-      width: fit-content;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: clamp(26px, 3vw, 36px);
-      margin: 0 0 10px;
-      letter-spacing: -.4px;
-    }
-
-    .lead {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      max-width: 62ch;
-    }
-
-    .hero-actions {
-      margin-top: 14px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    /* Main Tab Buttons */
-    .main-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .tab-button {
-      padding: 10px 20px;
-      background-color: var(--primary);
-      color: white;
-      font-size: 16px;
-      border-radius: 12px;
+      padding: 8px 12px;
       cursor: pointer;
+      font-weight: bold;
       transition: background-color 0.3s ease;
     }
 
-    .tab-button:hover {
-      background-color: var(--primary-2);
+    .theme-toggle:hover {
+      background-color: #caa048;
     }
   </style>
 </head>
@@ -258,37 +127,30 @@
             <span>Department of Electronics & Telecommunication</span>
           </div>
         </a>
+        <!-- Theme Toggle Button -->
+        <div class="theme-toggle" id="themeToggle">Toggle Dark Mode</div>
       </div>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container">
-        <div class="hero-card">
-          <div class="hero-inner">
-            <div>
-              <div class="kicker">Official Department Initiative</div>
-              <h1>ENTC Mentorship Program</h1>
-              <p class="lead">Choose your role below to get started!</p>
+  <main>
+    <section class="container">
+      <h1>ENTC Mentorship Program</h1>
+      <p class="lead">Choose your role below to get started!</p>
 
-              <!-- Main Tabs for Mentor and Mentee -->
-              <div class="main-tabs">
-                <button class="tab-button" onclick="window.location.href='mentor.html'">Mentors</button>
-                <button class="tab-button" onclick="window.location.href='mentee.html'">Mentees</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Main Tabs for Mentor and Mentee -->
+      <div class="main-tabs">
+        <button class="tab-button" onclick="window.location.href='mentor.html'">Mentors</button>
+        <button class="tab-button" onclick="window.location.href='mentee.html'">Mentees</button>
       </div>
     </section>
   </main>
 
-  <footer id="contact">
+  <footer>
     <div class="container">
       <div class="footer-inner">
         <div>
-          <strong style="color: var(--text)">ENTC Department</strong> · Mentorship Programme
+          <strong>ENTC Department</strong> · Mentorship Programme
           <div class="meta">For queries: <span class="mono">entc-rahmanmfa.23@uom.lk</span></div>
         </div>
         <div class="meta">© <span id="yearNow"></span> · Maintain in <span class="mono">mentors[]</span> array</div>
@@ -299,6 +161,12 @@
   <script>
     const y = document.getElementById("yearNow");
     if (y) y.textContent = String(new Date().getFullYear());
+
+    // Theme Toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
   </script>
 </body>
 </html>
