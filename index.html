@@ -7,166 +7,73 @@
   <meta name="description" content="ENTC Department Mentorship Portal — browse mentors by domain and request guidance." />
 
   <style>
-    :root {
-      --bg-light: #f6f8fb;
-      --surface-light: #ffffff;
-      --text-light: #0f172a;
-      --muted-light: #475569;
-      --primary-light: #0b2a5b;
-      --primary-2-light: #123a78;
-      --accent-light: #caa048;
-      --accent-2-light: #f1e4c3;
-
-      --bg-dark: #121212;
-      --surface-dark: #1e1e1e;
-      --text-dark: #ffffff;
-      --muted-dark: #b0b0b0;
-      --primary-dark: #0b2a5b;
-      --primary-2-dark: #123a78;
-      --accent-dark: #caa048;
-      --accent-2-dark: #f1e4c3;
-
-      --radius: 18px;
-      --radius-sm: 14px;
-      --ring: 0 0 0 4px rgba(11, 42, 91, .12);
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      height: 100%;
+    body {
+      background-color: #f6f8fb;
+      color: #0f172a;
+      font-family: sans-serif;
       margin: 0;
-      font-family: var(--sans);
-      color: var(--text-light);
-      background-color: var(--bg-light);
-      line-height: 1.5;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 0;
     }
 
-    /* Dark Mode Styles */
-    body.dark-mode {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
+    header {
+      background-color: #0b2a5b;
+      color: white;
+      padding: 20px;
+      text-align: center;
     }
 
-    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .main-container {
+      text-align: center;
+      padding: 50px;
+    }
 
     .btn {
-      background-color: var(--primary-light);
+      background-color: #0b2a5b;
       color: white;
-      font-size: 16px;
-      padding: 10px 20px;
+      font-size: 18px;
+      padding: 15px 25px;
       border-radius: 12px;
-      text-align: center;
-      text-decoration: none;
+      margin: 15px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      border: none;
     }
 
     .btn:hover {
-      background-color: var(--primary-2-light);
+      background-color: #123a78;
     }
 
-    .dark-mode .btn {
-      background-color: var(--primary-dark);
-    }
-
-    .dark-mode .btn:hover {
-      background-color: var(--primary-2-dark);
-    }
-
-    .hero {
-      padding: 32px 0 18px;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(246, 248, 251, .88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(226, 232, 240, .75);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      gap: 14px;
-    }
-
-    /* Theme Toggle Button */
-    .theme-toggle {
-      background-color: #f1e4c3;
-      border-radius: 12px;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .theme-toggle:hover {
-      background-color: #caa048;
+    .footer {
+      background-color: #0b2a5b;
+      color: white;
+      padding: 10px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <header class="topbar" role="banner">
-    <div class="container">
-      <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="ENTC Mentorship Portal Home">
-          <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
-            <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
-          </div>
-          <div class="brand-text">
-            <strong>ENTC Mentorship Portal</strong>
-            <span>Department of Electronics & Telecommunication</span>
-          </div>
-        </a>
-        <!-- Theme Toggle Button -->
-        <div class="theme-toggle" id="themeToggle">Toggle Dark Mode</div>
-      </div>
-    </div>
+  <header>
+    <h1>ENTC Mentorship Portal</h1>
+    <p>Department of Electronics & Telecommunication</p>
   </header>
 
-  <main>
-    <section class="container">
-      <h1>ENTC Mentorship Program</h1>
-      <p class="lead">Choose your role below to get started!</p>
-
-      <!-- Main Tabs for Mentor and Mentee -->
-      <div class="main-tabs">
-        <button class="tab-button" onclick="window.location.href='mentor.html'">Mentors</button>
-        <button class="tab-button" onclick="window.location.href='mentee.html'">Mentees</button>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>
-          <strong>ENTC Department</strong> · Mentorship Programme
-          <div class="meta">For queries: <span class="mono">entc-rahmanmfa.23@uom.lk</span></div>
-        </div>
-        <div class="meta">© <span id="yearNow"></span> · Maintain in <span class="mono">mentors[]</span> array</div>
-      </div>
+  <div class="main-container">
+    <h2>Choose your role to get started</h2>
+    <div>
+      <button class="btn" onclick="window.location.href='mentor.html'">Register as Mentor</button>
+      <button class="btn" onclick="window.location.href='mentee.html'">Request Mentorship</button>
     </div>
+  </div>
+
+  <footer class="footer">
+    <p>For queries: <span>entc-rahmanmfa.23@uom.lk</span></p>
+    <p>© 2026 ENTC Department</p>
   </footer>
-
-  <script>
-    const y = document.getElementById("yearNow");
-    if (y) y.textContent = String(new Date().getFullYear());
-
-    // Theme Toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-    });
-  </script>
 </body>
 </html>
