@@ -6,11 +6,15 @@
   <title>Mentor Registration</title>
 
   <style>
-    /* Similar styles as the homepage for consistency */
     body {
-      background-color: #121212;
-      color: #ffffff;
+      background-color: #f6f8fb;
+      color: #0f172a;
       font-family: sans-serif;
+    }
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 50px;
     }
     .btn {
       background-color: #0b2a5b;
@@ -26,13 +30,40 @@
     .btn:hover {
       background-color: #123a78;
     }
+
+    .section-heading {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0b2a5b;
+    }
+
+    .section-content {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #475569;
+    }
+
+    .decorative-section {
+      background-color: #f1e4c3;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 
 <body>
-  <div style="text-align:center; padding:50px;">
+  <div class="container">
     <h1>Register as a Mentor</h1>
     <p>Help guide the next generation of engineers and technologists!</p>
+
+    <!-- Decorative section about ENTC Department -->
+    <div class="decorative-section">
+      <h2 class="section-heading">About ENTC</h2>
+      <p class="section-content">The Department of Electronics & Telecommunication (ENTC) offers cutting-edge academic programs, fostering innovation and research in the field of electronics and communications.</p>
+    </div>
+
+    <!-- Mentor Registration Button -->
     <a href="https://forms.gle/SXxJkKuGGXNpZUMh9" class="btn">Click Here to Register</a>
   </div>
 </body>
