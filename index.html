@@ -4,76 +4,279 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ENTC Mentorship Portal</title>
-  <meta name="description" content="ENTC Department Mentorship Portal — browse mentors by domain and request guidance." />
+  <meta name="description" content="ENTC Department Mentorship Portal — choose your role (Mentor or Mentee) and navigate accordingly." />
 
   <style>
-    body {
-      background-color: #f6f8fb;
-      color: #0f172a;
-      font-family: sans-serif;
+    /* Add your existing CSS styles from the mentee.html here, as it will maintain consistency */
+    :root{
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+
+      /* University-style palette (edit these to match your institute) */
+      --primary: #0b2a5b;   /* deep navy */
+      --primary-2: #123a78;
+      --accent: #caa048;    /* warm gold */
+      --accent-2: #f1e4c3;
+
+      --radius: 18px;
+      --radius-sm: 14px;
+      --ring: 0 0 0 4px rgba(11, 42, 91, .12);
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
       margin: 0;
-      padding: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 12% -10%, rgba(202,160,72,.18), transparent 55%),
+                  radial-gradient(900px 650px at 85% -20%, rgba(11,42,91,.18), transparent 60%),
+                  var(--bg);
+      line-height: 1.5;
     }
 
-    header {
-      background-color: #0b2a5b;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{ width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,248,251,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226,232,240,.75);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    .topbar-inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 14px;
     }
 
-    .main-container {
-      text-align: center;
-      padding: 50px;
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 230px;
     }
 
-    .btn {
-      background-color: #0b2a5b;
-      color: white;
-      font-size: 18px;
-      padding: 15px 25px;
+    .crest{
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
-      margin: 15px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      border: none;
-    }
-
-    .btn:hover {
-      background-color: #123a78;
-    }
-
-    .footer {
-      background-color: #0b2a5b;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
       color: white;
-      padding: 10px;
+      box-shadow: 0 10px 18px rgba(11,42,91,.18);
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .crest svg{ width: 22px; height: 22px; opacity: .96; }
+
+    .brand-text{
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.2;
+    }
+
+    .brand-text strong{
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+
+    .brand-text span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.8);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform .08s ease, border-color .15s ease, background .15s ease;
+      user-select: none;
+    }
+
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(11,42,91,.25); background: #fff; }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(11,42,91,.25);
+      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
+      color: var(--primary);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 12px;
+      transition: transform .08s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 25px rgba(11,42,91,.10); text-decoration: none; }
+
+    .btn-primary{
+      border-color: rgba(11,42,91,.35);
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+    }
+
+    .btn-primary:hover{ box-shadow: 0 14px 30px rgba(11,42,91,.18); }
+
+    .hero{
+      padding: 32px 0 18px;
       text-align: center;
+    }
+
+    .hero-inner{
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .hero-card{
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    h1{
+      font-size: clamp(26px, 3vw, 36px);
+      margin: 0 0 10px;
+      letter-spacing: -.4px;
+    }
+
+    .hero-actions{
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .grid{
+      padding: 18px 0 40px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card{
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: calc(var(--radius) + 2px);
+      box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 18px 38px rgba(2,6,23,.10); border-color: rgba(11,42,91,.22); }
+
+    .card-top{
+      padding: 14px 14px 10px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .avatar{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16));
+      border: 1px solid rgba(226,232,240,.9);
+      font-weight: 800;
+      color: var(--primary);
+      flex: none;
+    }
+
+    .card h3{
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: -.1px;
+    }
+
+    .sub{
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>ENTC Mentorship Portal</h1>
-    <p>Department of Electronics & Telecommunication</p>
+  <header class="topbar" role="banner">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="ENTC Mentorship Portal Home">
+          <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
+            <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
+          </div>
+          <div class="brand-text">
+            <strong>ENTC Mentorship Portal</strong>
+            <span>Department of Electronics & Telecommunication</span>
+          </div>
+        </a>
+      </div>
+    </div>
   </header>
 
-  <div class="main-container">
-    <h2>Choose your role to get started</h2>
-    <div>
-      <button class="btn" onclick="window.location.href='mentor.html'">Register as Mentor</button>
-      <button class="btn" onclick="window.location.href='mentee.html'">Request Mentorship</button>
-    </div>
-  </div>
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-inner">
+            <h1>Welcome to the ENTC Mentorship Portal</h1>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="mentor.html">Mentor Tab</a>
+              <a class="btn btn-primary" href="mentee.html">Mentee Tab</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <footer class="footer">
-    <p>For queries: <span>entc-rahmanmfa.23@uom.lk</span></p>
-    <p>© 2026 ENTC Department</p>
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <strong>ENTC Department</strong> · Mentorship Programme
+          <div class="meta">For queries: <span class="mono">entc-rahmanmfa.23@uom.lk</span></div>
+        </div>
+        <div class="meta">© 2026 · Maintain in <span class="mono">mentors[]</span> array</div>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
