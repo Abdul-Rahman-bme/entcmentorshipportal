@@ -191,7 +191,15 @@
       margin: 0 0 10px;
       letter-spacing: -.4px;
     }
-    
+    .choose-role {
+      font-size: 18px; /* Font size for the small text */
+      font-weight: 500; /* Make the text slightly bold */
+      color: var(--primary); /* Set the text color to match the primary color */
+      margin-top: 10px; /* Add some space between the heading and the text */
+      margin-bottom: 20px; /* Add some space between the text and the buttons */
+      text-align: center; /* Center-align the text */
+    }
+
     .hero-actions {
       margin-top: 50px; /* Increased space between the title and buttons */
       display: flex;
@@ -279,6 +287,8 @@
         <div class="hero-card">
           <div class="hero-inner">
             <h1>Welcome to the ENTC Mentorship Portal</h1>
+            <!-- Add the small text here -->
+            <p class="choose-role">Choose your role below</p> <!-- The new text -->
             <div class="hero-actions">
               <a class="btn btn-primary" href="mentor.html">For Mentors</a>
               <a class="btn btn-primary" href="mentee.html">For Mentees</a>
