@@ -153,10 +153,27 @@
       text-align: center;
     }
 
-    .hero-inner{
+    .hero-inner {
       display: flex;
-      justify-content: center;
-      gap: 24px;
+      flex-direction: column; /* Stack the elements vertically */
+      align-items: center; /* Center the text and the new phrase */
+      gap: 10px; /* Space between elements */
+    }
+    
+    .choose-role {
+      font-size: 18px; /* Font size for the small text */
+      font-weight: 500; /* Make the text slightly bold */
+      color: var(--primary); /* Set the text color to match the primary color */
+      margin-top: 10px; /* Add some space between the heading and the text */
+      margin-bottom: 20px; /* Add space between the text and the buttons */
+      text-align: center; /* Center-align the text */
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 20px; /* Space between the buttons */
+      justify-content: flex-end; /* Align buttons to the right */
+      width: 100%; /* Make sure it stretches the full width of the container */
     }
 
     .hero-card {
@@ -191,24 +208,6 @@
       margin: 0 0 10px;
       letter-spacing: -.4px;
     }
-    .choose-role {
-      font-size: 18px; /* Font size for the small text */
-      font-weight: 500; /* Make the text slightly bold */
-      color: var(--primary); /* Set the text color to match the primary color */
-      margin-top: 10px; /* Add some space between the heading and the text */
-      margin-bottom: 20px; /* Add some space between the text and the buttons */
-      text-align: right; /* Center-align the text */
-    }
-
-    .hero-actions {
-      margin-top: 50px; /* Increased space between the title and buttons */
-      display: flex;
-      gap: 50px; /* Increased space between the buttons */
-      flex-wrap: wrap;
-      justify-content: center; /* Center buttons below the text */
-    }
-
-
     .grid{
       padding: 18px 0 40px;
       display: grid;
@@ -287,8 +286,9 @@
         <div class="hero-card">
           <div class="hero-inner">
             <h1>Welcome to the ENTC Mentorship Portal</h1>
-            <!-- Add the small text here -->
-            <p class="choose-role">Choose your role below</p> <!-- The new text -->
+            <!-- New text that should be centered below the title -->
+            <p class="choose-role">Choose your role below</p>
+            <!-- Align buttons to the right under the text -->
             <div class="hero-actions">
               <a class="btn btn-primary" href="mentor.html">For Mentors</a>
               <a class="btn btn-primary" href="mentee.html">For Mentees</a>
