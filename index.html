@@ -161,17 +161,29 @@
 
     .hero-card {
       padding: 40px 24px; /* Adjust padding for height */
-      height: 500px; /* You can adjust this height as per your preference */
+      height: auto; /* Let the box adjust height based on content */
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
       border: 3px solid rgba(226,232,240,.9); /* Increased border weight */
       border-radius: calc(var(--radius) + 8px);
       overflow: hidden;
-      background-image: url('assets/college/Homepage_pic1.png'); /* Set background image */
-      background-size: cover; /* Ensure the image covers the entire box */
-      background-position: center; /* Center the image */
-      background-repeat: no-repeat; /* Prevent image repetition */
     }
 
+    .hero-inner {
+      margin-bottom: 20px; /* Space between the text/buttons and the image */
+    }
+    
+    .hero-image {
+      width: 100%; /* Image fills the width of the container */
+      height: 300px; /* Set a fixed height for the image */
+      overflow: hidden;
+      border-radius: 8px; /* Optional: rounded corners for the image */
+    }
+    
+    .hero-image img {
+      width: 100%; /* Image fills the container */
+      height: 100%; /* Ensure the image takes up the full height of the container */
+      object-fit: cover; /* Maintain aspect ratio and cover the container */
+    }
 
 
     h1{
@@ -270,6 +282,10 @@
               <a class="btn btn-primary" href="mentor.html">Mentor Tab</a>
               <a class="btn btn-primary" href="mentee.html">Mentee Tab</a>
             </div>
+          </div>
+          <!-- Image container placed below the text and buttons -->
+          <div class="hero-image">
+            <img src="assets/college/Homepage_pic1.png" alt="Mentorship Portal Image">
           </div>
         </div>
       </div>
