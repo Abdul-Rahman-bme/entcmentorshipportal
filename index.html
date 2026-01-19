@@ -159,26 +159,30 @@
       gap: 24px;
     }
 
-    .hero-card{
-      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
-      border: 1px solid rgba(226,232,240,.9);
+    .hero-card {
+      padding: 40px 24px; /* Increased padding for more height */
+      height: 500px; /* Optional: You can specify a fixed height */
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      border: 3px solid rgba(226,232,240,.9); /* Increased border weight */
       border-radius: calc(var(--radius) + 8px);
-      box-shadow: var(--shadow);
       overflow: hidden;
     }
+
 
     h1{
       font-size: clamp(26px, 3vw, 36px);
       margin: 0 0 10px;
       letter-spacing: -.4px;
     }
-
-    .hero-actions{
-      margin-top: 14px;
+    
+    .hero-actions {
+      margin-top: 30px; /* Increased space between the title and buttons */
       display: flex;
-      gap: 10px;
+      gap: 20px; /* Increased space between the buttons */
       flex-wrap: wrap;
+      justify-content: center; /* Center buttons below the text */
     }
+
 
     .grid{
       padding: 18px 0 40px;
