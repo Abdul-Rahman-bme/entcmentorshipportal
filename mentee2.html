@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ENTC Mentorship Portal</title>
+  <meta name="description" content="ENTC Department Mentorship Portal — browse mentors by domain and request guidance." />
+
+  <style>
+    :root{
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+
+      /* University-style palette (edit these to match your institute) */
+      --primary: #0b2a5b;   /* deep navy */
+      --primary-2: #123a78;
+      --accent: #caa048;    /* warm gold */
+      --accent-2: #f1e4c3;
+
+      --radius: 18px;
+      --radius-sm: 14px;
+      --ring: 0 0 0 4px rgba(11, 42, 91, .12);
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 12% -10%, rgba(202,160,72,.18), transparent 55%),
+                  radial-gradient(900px 650px at 85% -20%, rgba(11,42,91,.18), transparent 60%),
+                  var(--bg);
+      line-height: 1.5;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{ width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,248,251,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226,232,240,.75);
+    }
+
+    .topbar-inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 14px;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 230px;
+    }
+
+    .crest{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: 0 10px 18px rgba(11,42,91,.18);
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .crest svg{ width: 22px; height: 22px; opacity: .96; }
+
+    .brand-text{
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.2;
+    }
+
+    .brand-text strong{
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+
+    .brand-text span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.8);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform .08s ease, border-color .15s ease, background .15s ease;
+      user-select: none;
+    }
+
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(11,42,91,.25); background: #fff; }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(11,42,91,.25);
+      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
+      color: var(--primary);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 12px;
+      transition: transform .08s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 25px rgba(11,42,91,.10); text-decoration: none; }
+
+    .btn-primary{
+      border-color: rgba(11,42,91,.35);
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+    }
+
+    .btn-primary:hover{ box-shadow: 0 14px 30px rgba(11,42,91,.18); }
+
+    /* Hero */
+    .hero{
+      padding: 32px 0 18px;
+    }
+
+    .hero-card{
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-inner{
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 24px;
+      padding: 24px;
+      align-items: center;
+    }
+
+    .kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(202,160,72,.35);
+      background: rgba(202,160,72,.10);
+      color: #7a5a14;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .2px;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+
+    h1{
+      font-size: clamp(26px, 3vw, 36px);
+      margin: 0 0 10px;
+      letter-spacing: -.4px;
+    }
+
+    .lead{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 62ch;
+    }
+
+    .hero-actions{
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat{
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .stat strong{
+      font-size: 18px;
+      color: var(--primary);
+    }
+
+    .stat span{
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Controls */
+    .controls{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .control-card{
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 22px rgba(2, 6, 23, .05);
+      padding: 14px;
+    }
+
+    .label{
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+    }
+
+    .search{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 12px;
+    }
+
+    .search:focus-within{ box-shadow: var(--ring); border-color: rgba(11,42,91,.35); }
+
+    .search input{
+      border: 0;
+      outline: none;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    .search svg{ width: 18px; height: 18px; color: var(--muted); }
+
+    .chips{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip{
+      border: 1px solid rgba(226,232,240,.9);
+      background: rgba(255,255,255,.85);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: transform .08s ease, border-color .15s ease, background .15s ease;
+      user-select: none;
+    }
+
+    .chip:hover{ transform: translateY(-1px); border-color: rgba(11,42,91,.25); }
+
+    .chip[data-active="true"]{
+      border-color: rgba(11,42,91,.35);
+      background: rgba(11,42,91,.10);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .sortrow{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    select{
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px 10px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    select:focus{ box-shadow: var(--ring); border-color: rgba(11,42,91,.35); }
+
+    .meta{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Grid */
+    .grid{
+      padding: 18px 0 40px;
+    }
+
+    .cards{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .card{
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: calc(var(--radius) + 2px);
+      box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 18px 38px rgba(2,6,23,.10); border-color: rgba(11,42,91,.22); }
+
+    .card-top{
+      padding: 14px 14px 10px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .avatar{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16));
+      border: 1px solid rgba(226,232,240,.9);
+      font-weight: 800;
+      color: var(--primary);
+      flex: none;
+    }
+
+    .card h3{
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: -.1px;
+    }
+
+    .sub{
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .card-mid{
+      padding: 0 14px 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .tags{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, .04);
+      border: 1px solid rgba(226,232,240,.9);
+      color: #334155;
+    }
+
+    .tag.primary{
+      background: rgba(11,42,91,.08);
+      border-color: rgba(11,42,91,.20);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .tag.gold{
+      background: rgba(202,160,72,.13);
+      border-color: rgba(202,160,72,.30);
+      color: #6b4e10;
+      font-weight: 700;
+    }
+
+    .card-bot{
+      margin-top: auto;
+      padding: 12px 14px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid rgba(226,232,240,.85);
+      background: linear-gradient(180deg, rgba(255,255,255,.60), rgba(255,255,255,.92));
+    }
+
+    .small{ font-size: 12px; color: var(--muted); }
+
+    .ghost{
+      border: 1px solid rgba(226,232,240,.95);
+      background: rgba(255,255,255,.86);
+      color: var(--primary);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .15s ease;
+      white-space: nowrap;
+    }
+
+    .ghost:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(11,42,91,.10); }
+
+    /* Modal */
+    dialog{
+      border: none;
+      padding: 0;
+      border-radius: calc(var(--radius) + 8px);
+      width: min(720px, calc(100% - 28px));
+      box-shadow: 0 30px 80px rgba(2, 6, 23, .25);
+      overflow: hidden;
+    }
+
+    dialog::backdrop{ background: rgba(2, 6, 23, .55); }
+
+    .modal{
+      background: #fff;
+    }
+
+    .modal-head{
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(11,42,91,.10), rgba(202,160,72,.12));
+      border-bottom: 1px solid rgba(226,232,240,.9);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .modal-title{
+      display: grid;
+      gap: 2px;
+    }
+
+    .modal-title strong{ font-size: 16px; }
+    .modal-title span{ font-size: 12px; color: var(--muted); }
+
+    .close{
+      border: 1px solid rgba(226,232,240,.95);
+      background: #fff;
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .modal-body{ padding: 16px; display: grid; gap: 12px; }
+
+    .kv{
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: var(--radius);
+      background: rgba(248,250,252,.70);
+    }
+
+    .kv .k{ font-size: 12px; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: .15px; }
+    .kv .v{ font-size: 14px; }
+
+    .modal-foot{
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid rgba(226,232,240,.9);
+      background: rgba(248,250,252,.65);
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid rgba(226,232,240,.9);
+      background: rgba(255,255,255,.75);
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mono{ font-family: var(--mono); }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .controls{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px){
+      .cards{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      .kv{ grid-template-columns: 1fr; }
+    }
+
+    /* Print */
+    @media print{
+      .topbar, .controls, .hero-actions, .ghost, .btn{ display:none !important; }
+      body{ background: #fff; }
+      .card, .hero-card, .control-card{ box-shadow:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar" role="banner">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="ENTC Mentorship Portal Home">
+          <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
+            <img 
+              src="assets/college/ENTC_logo_blue.png" 
+              alt="ENTC Logo"
+              style="width:30px; height:30px; object-fit:contain;"/>
+          </div>
+          <div class="brand-text">
+            <strong>ENTC Mentorship Portal</strong>
+            <span>Department of Electronics & Telecommunication</span>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Top navigation">
+          <a class="pill" href="#mentors">Mentors</a>
+          <a class="pill" href="#how">How it works</a>
+          <a class="pill" href="#contact">Contact</a>
+          <a class="btn btn-primary" href="#request" id="requestTop">
+            <span aria-hidden="true">➜</span> Request Mentorship
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-inner">
+            <div>
+              <div class="kicker">Official Department Initiative</div>
+              <h1>Find mentors by domain, industry, and career path.</h1>
+              <p class="lead">
+                Browse verified mentors from alumni and industry partners. Filter by interest areas and request guidance for projects,
+                internships, higher studies, or career planning.
+              </p>
+
+              <div class="hero-actions" id="request">
+                <a class="btn btn-primary" href="#mentors">Browse mentors</a>
+                <a class="btn" href="#how">Programme details</a>
+                <a class="btn" href="#" id="openForm">Open request form</a>
+              </div>
+            </div>
+
+            <div class="stats" aria-label="Quick statistics">
+              <div class="stat">
+                <strong id="statMentors">—</strong>
+                <span>Active mentors listed</span>
+              </div>
+              <div class="stat">
+                <strong id="statDomains">—</strong>
+                <span>Domains covered</span>
+              </div>
+              <div class="stat">
+                <strong class="mono">1:1 / Group</strong>
+                <span>Supported formats</span>
+              </div>
+              <div class="stat">
+                <strong class="mono">Online / Offline</strong>
+                <span>Flexible sessions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls" aria-label="Filtering and sorting">
+          <div class="control-card">
+            <span class="label">Search mentors</span>
+            <div class="search" role="search">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M16.6 16.6 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <input id="q" type="search" placeholder="Search by name, company, role, or interests…" autocomplete="off" />
+            </div>
+
+            <div style="height:12px"></div>
+
+            <span class="label">Filter by interest</span>
+            <div class="chips" id="chips"></div>
+          </div>
+
+          <div class="control-card">
+            <div class="sortrow">
+              <div>
+                <span class="label">Sort</span>
+                <select id="sort">
+                  <option value="name">Name (A–Z)</option>
+                  <option value="year">Graduation year (newest)</option>
+                  <option value="availability">Availability (available first)</option>
+                </select>
+              </div>
+
+              <div style="text-align:right">
+                <span class="label">Results</span>
+                <div class="meta"><span id="count">0</span> mentors shown</div>
+                <div class="meta" style="margin-top:4px"><a href="#" id="clear">Clear filters</a></div>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <span class="label">Privacy notice</span>
+            <div class="meta">
+              Mentor contact details are protected. Requests are routed via the department.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" id="mentors">
+      <div class="container">
+        <div style="display:flex; align-items:end; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div class="kicker" style="margin:0 0 8px;">Mentor Directory</div>
+            <h2 style="margin:0; font-size:20px; letter-spacing:-.2px;">All mentors (single page)</h2>
+            <p class="lead" style="margin-top:6px">Click <span class="mono">View</span> for details and the official request route.</p>
+          </div>
+          <button class="btn" id="print" title="Print mentors list">Print</button>
+        </div>
+
+        <div class="cards" id="cards" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="how" style="padding: 0 0 26px;">
+      <div class="container">
+        <div class="control-card">
+          <div class="kicker" style="margin:0 0 8px;">How it works</div>
+          <ol style="margin:0; padding-left: 18px; color: var(--muted); font-size: 14px; display:grid; gap: 6px;">
+            <li>Browse mentors by interest areas and availability.</li>
+            <li>Submit a mentorship request using the official form (department routed).</li>
+            <li>Faculty/IR team matches students to mentors based on domain and goals.</li>
+            <li>Sessions happen online/offline as per availability; progress is monitored through brief check-ins.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <strong style="color: var(--text)">ENTC Department</strong> · Mentorship Programme
+          <div class="meta">For queries: <span class="mono">entc-rahmanmfa.23@uom.lk</span></div>
+        </div>
+        <div class="meta">© <span id="yearNow"></span> · Maintain in <span class="mono">mentors[]</span> array</div>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="modal" aria-labelledby="modalName">
+    <div class="modal">
+      <div class="modal-head">
+        <div class="modal-title">
+          <strong id="modalName">Mentor</strong>
+          <span id="modalRole">Role</span>
+        </div>
+        <button class="close" id="closeModal" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="kv"><div class="k">Organization</div><div class="v" id="modalOrg">—</div></div>
+        <div class="kv"><div class="k">Graduation Year</div><div class="v" id="modalYear">—</div></div>
+        <div class="kv"><div class="k">Interests</div><div class="v" id="modalInterests">—</div></div>
+        <div class="kv"><div class="k">Mentorship</div><div class="v" id="modalMode">—</div></div>
+        <div class="kv"><div class="k">Availability</div><div class="v" id="modalAvail">—</div></div>
+        <div class="kv"><div class="k">Notes</div><div class="v" id="modalNotes">—</div></div>
+      </div>
+      <div class="modal-foot">
+        <div class="meta">Requests are routed via the department.</div>
+        <a class="btn btn-primary" href="#" id="modalRequest">Request this mentor</a>
+      </div>
+    </div>
+  </dialog>
+
+    <script>
+    // Data only: mentors and optional request form link.
+    // UI logic has been moved to script.js to avoid overlap/duplication.
+    const mentors = [
+{
+        id: "m01",
+        name: "A. Deshmukh",
+        role: "Embedded Systems Engineer",
+        org: "Bosch",
+        gradYear: 2020,
+        interests: ["Embedded", "IoT", "C/C++"],
+        mode: "1:1 / Group",
+        availability: "Available",
+        notes: "Project guidance, interview prep, and internship roadmap.",
+        requestLink: "#" // put Google Form link for this mentor (optional)
+      },
+      {
+        id: "m02",
+        name: "S. Perera",
+        role: "RF Engineer",
+        org: "Dialog Axiata",
+        gradYear: 2018,
+        interests: ["Telecom", "RF", "5G"],
+        mode: "Group sessions",
+        availability: "Limited",
+        notes: "Telecom fundamentals, RF basics, and career guidance.",
+        requestLink: "#"
+      },
+      {
+        id: "m03",
+        name: "N. Kulkarni",
+        role: "MS/PhD Candidate",
+        org: "University Research Lab",
+        gradYear: 2022,
+        interests: ["Higher Studies", "Research", "Signal Processing"],
+        mode: "1:1",
+        availability: "Available",
+        notes: "SOP review, research profile building, publication basics.",
+        requestLink: "#"
+      },
+      {
+        id: "m04",
+        name: "R. Jayasinghe",
+        role: "Data/ML Engineer",
+        org: "Startup",
+        gradYear: 2019,
+        interests: ["AI/ML", "Python", "Computer Vision"],
+        mode: "1:1 / Group",
+        availability: "Available",
+        notes: "ML project direction + GitHub profile improvements.",
+        requestLink: "#"
+      },
+      {
+        id: "m05",
+        name: "P. Patil",
+        role: "Hardware Design Engineer",
+        org: "L&T Technology Services",
+        gradYear: 2016,
+        interests: ["VLSI", "PCB", "Electronics"],
+        mode: "Group sessions",
+        availability: "Limited",
+        notes: "Core electronics and industry expectations.",
+        requestLink: "#"
+      }
+    ];
+
+    // Optional: one global request form link
+    const globalRequestForm = "https://docs.google.com/forms/d/e/1FAIpQLSezgoSE3f84IaXH7OcVr6iQ98lvCwkMy2TNxHEEOaZtWN_ncg/viewform";
+  </script>
+  <script src="script.js"></script></body>
+</html>
