@@ -763,6 +763,13 @@
 
     // Render
     renderAll();
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+      duration: 1000, // Adjust animation duration
+      once: true,     // Ensure animations trigger only once
+      offset: 200,    // Offset to trigger the animation earlier or later
+    });
+
   }
 
   init();
