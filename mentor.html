@@ -6,33 +6,147 @@
   <title>Mentor Details - ENTC Mentorship Portal</title>
   <meta name="description" content="Mentor details and information about ENTC and E-Club." />
 
+  <!-- Include AOS for Scroll-triggered Animations -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
   <style>
     /* Root Variables: Updated color scheme */
     :root {
-      --bg: #192041; /* Dark blue background */
+      --bg: #192041; /* Dark blue background for main sections (hero and body) */
       --surface: #ffffff; /* White for card backgrounds */
-      --primary: #0E1E84; /* Normal blue for buttons */
+      --text: #0f172a; /* Text color (no change, remains black) */
+      --muted: #475569; /* Muted text color */
+      --border: #e2e8f0; /* Border color */
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08); /* Soft shadow for elements */
+    
+      /* Primary and accent colors based on the provided color codes */
+      --primary: #0E1E84; /* Normal blue for buttons and other interactive elements */
       --accent: #F3B600; /* Yellow for footer */
+      --accent-2: #f1e4c3; /* Lighter goldish accent (unchanged) */
+    
+      --radius: 18px; /* Border radius for rounded elements */
+      --radius-sm: 14px; /* Smaller radius for compact elements */
+      --ring: 0 0 0 4px rgba(11, 42, 91, .12); /* Focus ring */
     }
 
     * { 
       box-sizing: border-box; 
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      color: #0f172a; 
-      background: var(--bg);
+    html, body { 
+      height: 100%; 
+    }
+
+    body {
+      margin: 0; 
+      font-family: var(--sans); 
+      color: var(--text); 
+      background: var(--bg); /* Apply the dark blue background for the body */
       line-height: 1.5;
     }
 
-    /* Add other global styles for header, footer, etc. */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* Hero Section */
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top bar styling */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,248,251,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226,232,240,.75);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center; /* Centers the logo and text vertically */
+      gap: 12px; /* Adds space between logo and text */
+      min-width: 230px; /* Ensures brand section has a minimum width */
+    }
+
+    .crest {
+      width: 50px; /* Size of logo circle */
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2)); /* Blue color */
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: 0 10px 18px rgba(11,42,91,.18);
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .crest svg {
+      width: 30px;
+      height: 30px;
+      opacity: .96;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.2;
+    }
+
+    .brand-text strong {
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Buttons with updated colors */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(11,42,91,.25);
+      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
+      color: var(--primary); /* Blue button text */
+      padding: 18px 24px; /* Button size */
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform .08s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(11,42,91,.10);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      border-color: rgba(11,42,91,.35);
+      background: var(--primary); /* Blue button background */
+      color: #fff; /* White text */
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 14px 30px rgba(11,42,91,.18);
+    }
+
+    /* Hero section with updated background */
     .hero {
       padding: 32px 0 18px;
       text-align: center;
@@ -48,7 +162,7 @@
     .choose-role {
       font-size: 18px;
       font-weight: 500;
-      color: var(--primary);
+      color: var(--primary); /* Blue text */
       margin-top: 10px;
       margin-bottom: 20px;
       text-align: center;
@@ -57,7 +171,7 @@
     .hero-actions {
       display: flex;
       gap: 20px;
-      justify-content: center;
+      justify-content: center; /* Center the buttons */
       width: 100%;
     }
 
@@ -65,56 +179,148 @@
       padding: 40px 24px;
       height: auto;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
-      border: 3px solid rgba(226,232,240,.9);
-      border-radius: 18px;
+      border: 3px solid rgba(226,232,240,.9); /* Increased border weight */
+      border-radius: calc(var(--radius) + 8px);
       overflow: hidden;
-      background: var(--surface);
+      background: var(--surface); /* White card background */
     }
 
-    /* Countdown Timer Styling */
-    #countdown {
-      background-color: #0E1E84;
-      color: white;
-      padding: 30px;
-      text-align: center;
-      font-size: 24px;
-      border-radius: 10px;
+    .hero-inner {
+      margin-bottom: 20px;
     }
 
-    #timer {
-      font-size: 48px;
-      font-weight: bold;
+    .hero-image {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 8px;
     }
 
-    /* Blinking Animation for Register Button */
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-position: center;
+    }
+
+    h1 {
+      font-size: clamp(26px, 3vw, 36px);
+      margin: 0 0 10px;
+      letter-spacing: -.4px;
+    }
+
+    /* Grid layout with updated background */
+    .grid {
+      padding: 18px 0 40px;
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr)); /* One column for the grid */
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--surface); /* White background for the cards */
+      border: 1px solid var(--border); /* Light border color */
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(2,6,23,.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
+      margin-bottom: 20px; /* Space between cards */
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(2,6,23,.10);
+      border-color: var(--primary); /* Dark border color on hover */
+    }
+
+    .card-top {
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16));
+      border: 1px solid rgba(226,232,240,.9);
+      font-weight: 800;
+      color: var(--primary); /* Uses primary color for text */
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: -.1px;
+    }
+
+    .sub {
+      margin: 2px 0 0;
+      color: var(--muted); /* Muted color for subtext */
+      font-size: 12px; /* Smaller font size for subtext */
+    }
+
+    .card-mid {
+      padding: 14px;
+      font-size: 14px;
+      color: var(--muted); /* Muted text color */
+    }
+
+    /* Styling for the hyperlink (for mentor registration) */
+    .register-link {
+      color: var(--primary); /* Sets the link color to the primary dark blue */
+      text-decoration: underline; /* Adds the underline */
+    }
+
+    .register-link:hover {
+      color: #003366; /* Darker blue on hover for better visibility */
+      text-decoration: none; /* Optional: Removes underline on hover if you prefer */
+    }
+
+    /* Footer Background */
+    footer {
+      background-color: #F3B600; /* Yellow color for footer */
+      padding: 20px 0; /* Adjust padding for the footer */
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between; /* Align content to left and right */
+      align-items: center;
+      color: #192041; /* Dark text color for footer text */
+    }
+
+    .footer-inner .meta {
+      color: #192041; /* Text color for meta text */
+    }
+
+    .footer-inner .mono {
+      font-family: var(--mono); /* Ensure monospace font for special text */
+    }
+
+    /* Create a color-changing animation for the "Register" button text */
     @keyframes blinkText {
-      0% { color: #F3B600; }
-      50% { color: #0E1E84; }
-      100% { color: #F3B600; }
+      0% {
+        color: #F3B600; /* Yellow color */
+      }
+      50% {
+        color: #0E1E84; /* Normal blue */
+      }
+      100% {
+        color: #F3B600; /* Yellow again */
+      }
     }
 
+    /* Apply animation to the "Register" button */
     .hero-actions a:nth-child(3) {
-      animation: blinkText 1.5s infinite;
-      font-weight: bold;
+      animation: blinkText 1.5s infinite; /* Apply the blink animation */
+      font-weight: bold; /* Make the text bold for better visibility */
     }
-    /* Footer Background */ 
-    footer { 
-      background-color: #F3B600; /* Yellow color for footer */ 
-      padding: 20px 0; /* Adjust padding for the footer */ 
-    } 
-    
-    .footer-inner { 
-      display: flex; 
-      justify-content: space-between; /* Align content to left and right */ 
-      align-items: center; color: #192041; /* Dark text color for footer text */ 
-    } 
-    .footer-inner .meta { 
-      color: #192041; /* Text color for meta text */ 
-    } 
-    .footer-inner .mono { 
-      font-family: var(--mono); /* Ensure monospace font for special text */ 
-    }
-
   </style>
 </head>
 
@@ -159,10 +365,86 @@
       <div id="timer"></div>
     </section>
 
-    <!-- About Section with mentor details -->
+    <!-- Add the Cards Section Below Countdown -->
     <section id="about" class="grid">
       <div class="container">
-        <!-- Add cards here -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-top">
+            <div class="avatar">ENTC</div>
+            <div>
+              <h3>Introduction to Mentorship</h3>
+              <div class="sub">ENTC Department's Mentorship Programme</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>The ENTC Department at the University of Moratuwa is excited to introduce a structured mentorship program aimed at guiding undergraduate students in their academic, research, and career journeys. This initiative connects students with experienced mentors from academia and industry, offering personalized guidance and support to help students thrive. As a mentor, your expertise will play a pivotal role in shaping the future of the next generation of engineers, researchers, and industry professionals.</p>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-top">
+            <div class="avatar">Mentor</div>
+            <div>
+              <h3>Why Become a Mentor?</h3>
+              <div class="sub">Impact, Career Growth, Networking, Recognition</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>Mentoring offers alumni and industry professionals the opportunity to give back to the ENTC community by sharing valuable knowledge, experiences, and guidance. As a mentor, you will help students navigate their academic and professional paths, refine their skills, and guide them toward their career goals. Additionally, mentoring can enhance your own leadership, coaching, and communication skills, making you a more well-rounded professional. You will also expand your network by connecting with talented students and fellow mentors from diverse fields.</p>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-top">
+            <div class="avatar">Expectations</div>
+            <div>
+              <h3>Expectations from Mentors</h3>
+              <div class="sub">Guidance and Time Commitment</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>As a mentor, you will be expected to provide career and research guidance, offer constructive feedback on student projects, and assist with the development of key professional skills. You will help students identify their preferred career path or research focus and support them in setting and achieving their goals. We recommend meeting with your mentees at least once every two weeks to ensure ongoing support and growth. Mentors will guide a group of 2-5 students, ensuring that you can provide tailored mentorship to each mentee based on their individual needs and aspirations.</p>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+          <div class="card-top">
+            <div class="avatar">Registration</div>
+            <div>
+              <h3>How to Get Involved</h3>
+              <div class="sub">Mentor Registration Form</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>Joining the ENTC Mentorship Program as a mentor is simple. To get started, please fill out the <a href="https://forms.gle/i4kT9irTQvapHViG9" target="_blank" class="register-link">mentor registration form</a>. Once registered, you will be invited to an onboarding session where you will learn more about the program structure, role expectations, and how you can best support your mentees. The session will provide you with the tools and knowledge needed to make the mentorship experience impactful for both you and your mentees.</p>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="500">
+          <div class="card-top">
+            <div class="avatar">Success</div>
+            <div>
+              <h3>Success Stories</h3>
+              <div class="sub">Mentor Testimonials</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>"Being a mentor has been one of the most rewarding experiences of my career. I’ve had the opportunity to guide talented students through their academic and professional journeys, and in turn, I’ve learned a lot from their fresh perspectives. It's truly inspiring to watch them grow and succeed. I encourage any alumni or professional to join the ENTC Mentorship Program—it's an investment in both the future of engineering and in your personal development as a mentor." — Mentor, ENTC Mentorship Program</p>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="600">
+          <div class="card-top">
+            <div class="avatar">Resources</div>
+            <div>
+              <h3>Resources for Mentors</h3>
+              <div class="sub">Mentor Support</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>As a mentor, you will have access to a variety of resources to support your mentorship journey. These include communication guidelines, best practices for mentorship, and a detailed onboarding presentation. You can also reach out to the program coordinators for additional support and clarification as needed. The goal is to ensure you feel equipped and confident in your ability to provide the best possible guidance to your mentees.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -178,24 +460,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Countdown Timer Script
-    var countDownDate = new Date("Aug 31, 2026 23:59:59").getTime();
-    var x = setInterval(function() {
-      var now = new Date().getTime();
-      var distance = countDownDate - now;
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("timer").innerHTML = "Registration has ended.";
-      }
-    }, 1000);
-  </script>
 </body>
 </html>
