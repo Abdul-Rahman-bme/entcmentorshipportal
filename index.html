@@ -35,7 +35,7 @@
       margin: 0;
       font-family: var(--sans);
       color: var(--text);
-      background: var(--bg); /* Apply the dark blue background for the body */
+      background: #192041; /* Dark blue for the entire page background */
       line-height: 1.5;
     }
     
@@ -209,15 +209,16 @@
     }
     
     .card {
-      background: var(--surface); /* White background for cards */
-      border: 1px solid var(--border); /* Lighter border color */
+      background: #ffffff; /* White background for the cards */
+      border: 1px solid var(--border); /* Border color */
       border-radius: var(--radius);
-      box-shadow: 0 10px 24px rgba(2,6,23,.06);
+      box-shadow: 0 10px 24px rgba(2,6,23,.06); /* Shadow effect */
       overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
     }
+
     
     .card:hover {
       transform: translateY(-2px);
@@ -255,6 +256,11 @@
       color: var(--muted);
       font-size: 12px;
     }
+    /* Footer Background - Yellow */
+    footer {
+      background-color: #F3B600; /* Yellow color for footer */
+    }
+
 
   </style>
 </head>
