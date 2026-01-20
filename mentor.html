@@ -1,214 +1,259 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Character encoding and responsive meta tag to ensure the page scales properly on all devices -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mentor Details - ENTC Mentorship Portal</title>
   <meta name="description" content="Mentor details and information about ENTC and E-Club." />
 
   <style>
-    /* Reuse previous CSS, keeping the same structure and styles */
-    :root{
-      --bg: #f6f8fb;
-      --surface: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: #e2e8f0;
-      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+    /* Root Variables: These define global styles that you can adjust easily */
+    :root {
+      /* Background and surface colors */
+      --bg: #0018a8; /* Background color */
+      --surface: #ffffff; /* Surface color for cards and containers */
+      --text: #0f172a; /* Text color */
+      --muted: #475569; /* Muted text color (used for secondary text) */
+      --border: #e2e8f0; /* Border color */
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08); /* Box shadow for cards */
+
+      /* Primary and secondary colors (used for buttons and highlights) */
       --primary: #0b2a5b; /* Dark blue */
-      --primary-2: #123a78;
-      --accent: #caa048;
-      --accent-2: #f1e4c3;
-      --radius: 18px;
-      --radius-sm: 14px;
+      --primary-2: #123a78; /* Lighter shade of blue */
+      --accent: #caa048; /* Accent color (goldish) */
+      --accent-2: #f1e4c3; /* Lighter accent color */
+
+      /* Border radius values */
+      --radius: 18px; /* Default rounded corners */
+      --radius-sm: 14px; /* Smaller rounded corners for elements like buttons */
+      
+      /* Ring style used for focus states */
       --ring: 0 0 0 4px rgba(11, 42, 91, .12);
+
+      /* Font family variables */
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
-    body{
-      margin: 0;
-      font-family: var(--sans);
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.5;
+    /* Universal selector to apply box-sizing across the entire document */
+    * { 
+      box-sizing: border-box; 
     }
 
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-
-    .container{ width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-
-    /* Top bar */
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(246,248,251,.88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(226,232,240,.75);
+    /* Basic styling for the body */
+    html, body { 
+      height: 100%; 
+    }
+    body {
+      margin: 0; /* Removes default margin */
+      font-family: var(--sans); /* Applies sans-serif font */
+      color: var(--text); /* Uses the primary text color */
+      background: var(--bg); /* Sets background color */
+      line-height: 1.5; /* Increases line height for readability */
     }
 
-    .topbar-inner{
+    /* Hyperlinks default styles */
+    a {
+      color: inherit; /* Makes links inherit the text color */
+      text-decoration: none; /* Removes underline */
+    }
+    a:hover {
+      text-decoration: underline; /* Adds underline on hover for links */
+    }
+
+    /* Container styling: Centers content on the page */
+    .container {
+      width: min(1180px, calc(100% - 40px)); /* Limits max width to 1180px, adds margin on smaller screens */
+      margin: 0 auto; /* Centers the container */
+    }
+
+    /* Styling for the top navigation bar */
+    .topbar {
+      position: sticky; /* Keeps topbar fixed on the top while scrolling */
+      top: 0; /* Aligns to the top */
+      z-index: 50; /* Ensures topbar stays above other elements */
+      background: rgba(246,248,251,.88); /* Slightly transparent background */
+      backdrop-filter: blur(10px); /* Adds a blur effect to background behind the topbar */
+      border-bottom: 1px solid rgba(226,232,240,.75); /* Adds a light border under the topbar */
+    }
+
+    .topbar-inner {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      align-items: center; /* Centers items vertically */
+      justify-content: space-between; /* Aligns content on either side of the topbar */
       padding: 12px 0;
-      gap: 14px;
+      gap: 14px; /* Adds space between elements */
     }
 
-    .brand{
+    .brand {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 230px;
+      align-items: center; /* Centers the logo and text vertically */
+      gap: 12px; /* Adds space between logo and text */
+      min-width: 230px; /* Ensures brand section has a minimum width */
     }
 
-    .crest{
-      width: 42px;
+    .crest {
+      width: 42px; /* Sets the size of the logo circle */
       height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      border-radius: 12px; /* Rounds the corners of the logo circle */
+      background: linear-gradient(135deg, var(--primary), var(--primary-2)); /* Creates a gradient background */
       display: grid;
-      place-items: center;
-      color: white;
-      box-shadow: 0 10px 18px rgba(11,42,91,.18);
-      border: 1px solid rgba(255,255,255,.25);
+      place-items: center; /* Centers the logo inside the circle */
+      color: white; /* White color for logo */
+      box-shadow: 0 10px 18px rgba(11,42,91,.18); /* Adds a soft shadow for a 3D effect */
+      border: 1px solid rgba(255,255,255,.25); /* Adds a subtle white border */
     }
 
-    .crest svg{ width: 22px; height: 22px; opacity: .96; }
+    .crest svg {
+      width: 22px; /* Adjusts the size of the SVG logo inside the crest */
+      height: 22px;
+      opacity: .96; /* Slightly reduces opacity */
+    }
 
-    .brand-text{
+    /* Brand text styles */
+    .brand-text {
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* Stacks the text vertically */
       gap: 2px;
-      line-height: 1.2;
+      line-height: 1.2; /* Increases line height for readability */
     }
 
-    .brand-text strong{
-      font-size: 14px;
-      letter-spacing: .2px;
+    .brand-text strong {
+      font-size: 14px; /* Sets the font size for the bold text */
+      letter-spacing: .2px; /* Adds space between letters */
     }
 
-    .brand-text span{
-      font-size: 12px;
-      color: var(--muted);
+    .brand-text span {
+      font-size: 12px; /* Smaller font size for secondary text */
+      color: var(--muted); /* Uses the muted color for less important text */
     }
 
-    .hero{
-      padding: 32px 0 18px;
-      text-align: center;
+    /* Hero section styling */
+    .hero {
+      padding: 32px 0 18px; /* Adds padding for top and bottom */
+      text-align: center; /* Centers the text inside the hero section */
     }
 
-    .hero-inner{
+    .hero-inner {
       display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-direction: column; /* Stack the buttons below the text */
+      justify-content: center; /* Centers content inside the section */
+      gap: 24px; /* Adds space between elements */
+      flex-direction: column; /* Stacks the elements vertically */
     }
 
-    .hero-card{
-      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: calc(var(--radius) + 8px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .hero-card {
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70)); /* Light gradient background */
+      border: 1px solid rgba(226,232,240,.9); /* Adds a subtle border around the card */
+      border-radius: calc(var(--radius) + 8px); /* Adds rounded corners */
+      box-shadow: var(--shadow); /* Applies a shadow to give the card depth */
+      overflow: hidden; /* Ensures no content overflows */
     }
 
-    h1{
-      font-size: clamp(26px, 3vw, 36px);
-      margin: 0 0 10px;
-      letter-spacing: -.4px;
+    h1 {
+      font-size: clamp(26px, 3vw, 36px); /* Uses a responsive font size */
+      margin: 0 0 10px; /* Removes margin from top and adds margin at the bottom */
+      letter-spacing: -.4px; /* Slightly reduces space between letters */
     }
 
-    .hero-actions{
-      margin-top: 14px;
+    .hero-actions {
+      margin-top: 14px; /* Adds space above the action buttons */
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 10px; /* Adds space between buttons */
+      flex-wrap: wrap; /* Allows the buttons to wrap in smaller screens */
     }
 
-    .btn{
+    /* Button styles */
+    .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid rgba(11,42,91,.25);
-      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
-      color: var(--primary);
-      padding: 18px 24px; /* Adjust button size */
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 15px; 
-      transition: transform .08s ease, box-shadow .15s ease;
+      border: 1px solid rgba(11,42,91,.25); /* Adds a border to buttons */
+      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03)); /* Gradient background */
+      color: var(--primary); /* Uses primary color for text */
+      padding: 18px 24px; /* Adds padding for button height and width */
+      border-radius: 999px; /* Creates rounded buttons */
+      font-weight: 600; /* Makes the text bold */
+      font-size: 15px; /* Sets a moderate font size */
+      transition: transform .08s ease, box-shadow .15s ease; /* Smooth hover transitions */
     }
 
-    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 25px rgba(11,42,91,.10); text-decoration: none; }
-
-    .btn-primary{
-      border-color: rgba(11,42,91,.35);
-      background: var(--primary);
-      color: #fff;
+    .btn:hover {
+      transform: translateY(-1px); /* Moves the button slightly up on hover */
+      box-shadow: 0 12px 25px rgba(11,42,91,.10); /* Adds shadow on hover */
+      text-decoration: none; /* Removes underline on hover */
     }
 
-    .btn-primary:hover{ box-shadow: 0 14px 30px rgba(11,42,91,.18); }
+    .btn-primary {
+      border-color: rgba(11,42,91,.35); /* Darker border color */
+      background: var(--primary); /* Dark blue background */
+      color: #fff; /* White text */
+    }
 
-    .grid{
+    .btn-primary:hover {
+      box-shadow: 0 14px 30px rgba(11,42,91,.18); /* Adds more shadow on hover */
+    }
+
+    /* Grid layout for sections like mentor introduction, why become a mentor, etc. */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 30px 0;
+      grid-template-columns: repeat(3, 1fr); /* Creates a 3-column layout */
+      gap: 20px; /* Adds space between columns */
+      padding: 30px 0; /* Adds padding at the top and bottom */
     }
 
-    .card{
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 24px rgba(2,6,23,.06);
-      overflow: hidden;
+    .card {
+      background: rgba(255,255,255,.88); /* Light background for cards */
+      border: 1px solid rgba(226,232,240,.9); /* Subtle border */
+      border-radius: var(--radius); /* Rounded corners */
+      box-shadow: 0 10px 24px rgba(2,6,23,.06); /* Light shadow effect */
+      overflow: hidden; /* Ensures no content overflows */
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* Stack card content vertically */
       transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
     }
 
-    .card:hover{ transform: translateY(-2px); box-shadow: 0 18px 38px rgba(2,6,23,.10); border-color: rgba(11,42,91,.22); }
+    .card:hover {
+      transform: translateY(-2px); /* Moves the card slightly up on hover */
+      box-shadow: 0 18px 38px rgba(2,6,23,.10); /* Adds stronger shadow on hover */
+      border-color: rgba(11,42,91,.22); /* Darkens the border color on hover */
+    }
 
-    .card-top{
+    .card-top {
       padding: 14px;
       display: flex;
       gap: 12px;
-      align-items: flex-start;
+      align-items: flex-start; /* Aligns items to the left */
     }
 
-    .avatar{
-      width: 42px;
+    .avatar {
+      width: 42px; /* Size of the avatar */
       height: 42px;
-      border-radius: 14px;
+      border-radius: 14px; /* Rounded avatar */
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16));
-      border: 1px solid rgba(226,232,240,.9);
-      font-weight: 800;
-      color: var(--primary);
+      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16)); /* Gradient background */
+      border: 1px solid rgba(226,232,240,.9); /* Border for avatar */
+      font-weight: 800; /* Makes the avatar text bold */
+      color: var(--primary); /* Uses primary color for text */
     }
 
-    .card h3{
+    .card h3 {
       margin: 0;
-      font-size: 15px;
-      letter-spacing: -.1px;
+      font-size: 15px; /* Font size for heading */
+      letter-spacing: -.1px; /* Slightly tightens letter spacing */
     }
 
-    .sub{
+    .sub {
       margin: 2px 0 0;
-      color: var(--muted);
-      font-size: 12px;
+      color: var(--muted); /* Muted color for subtext */
+      font-size: 12px; /* Smaller font size for subtext */
     }
 
-    .card-mid{
+    .card-mid {
       padding: 14px;
-      font-size: 14px;
-      color: var(--muted);
+      font-size: 14px; /* Font size for card text */
+      color: var(--muted); /* Muted text color */
     }
   </style>
 </head>
