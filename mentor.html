@@ -73,9 +73,9 @@
     
     .brand {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 230px;
+      align-items: center; /* Centers the logo and text vertically */
+      gap: 12px; /* Adds space between logo and text */
+      min-width: 230px; /* Ensures brand section has a minimum width */
     }
     
     .crest {
@@ -280,6 +280,7 @@
       color: #003366; /* Darker blue on hover for better visibility */
       text-decoration: none; /* Optional: Removes underline on hover if you prefer */
     }
+
     /* Footer Background */
     footer {
       background-color: #F3B600; /* Yellow color for footer */
@@ -300,136 +301,137 @@
     .footer-inner .mono {
       font-family: var(--mono); /* Ensure monospace font for special text */
     }
+    
+    /* Create a color-changing animation for the "Register" button text */
+    @keyframes blinkText {
+      0% {
+        color: #F3B600; /* Yellow color */
+      }
+      50% {
+        color: #0E1E84; /* Normal blue */
+      }
+      100% {
+        color: #F3B600; /* Yellow again */
+      }
+    }
+    
+    /* Apply animation to the "Register" button */
+    .hero-actions a:nth-child(3) {
+      animation: blinkText 1.5s infinite; /* Apply the blink animation */
+      font-weight: bold; /* Make the text bold for better visibility */
+    }
+  </style>
+</head>
 
-      </style>
-    </head>
-    
-    <body>
-      <header class="topbar" role="banner">
-        <div class="container">
-          <div class="topbar-inner">
-            <a class="brand" href="index.html" aria-label="ENTC Mentorship Portal Home">
-              <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
-                <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
-              </div>
-              <div class="brand-text">
-                <strong>ENTC Mentorship Portal</strong>
-                <span>Department of Electronics & Telecommunication</span>
-                <span>University of Moratuwa</span>
-              </div>
-            </a>
+<body>
+  <header class="topbar" role="banner">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html" aria-label="ENTC Mentorship Portal Home">
+          <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
+            <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
           </div>
-        </div>
-      </header>
-    
-      <main id="top">
-        <section class="hero">
-          <div class="container">
-            <div class="hero-card">
-              <div class="hero-inner">
-                <h1>Welcome Mentors</h1>
-                <p class="choose-role">Learn more about the ENTC Department and the E-Club.</p>
-                <div class="hero-actions">
-                  <a class="btn btn-primary" href="#about">Learn More</a>
-                  <a class="btn btn-primary" href="index.html">Back to Homepage</a>
-                </div>
-              </div>
-            </div>
+          <div class="brand-text">
+            <strong>ENTC Mentorship Portal</strong>
+            <span>Department of Electronics & Telecommunication</span>
+            <span>University of Moratuwa</span>
           </div>
-        </section>
-    
-        <section id="about" class="grid">
-          <div class="container">
-            <div class="card">
-              <div class="card-top">
-                <div class="avatar">ENTC</div>
-                <div>
-                  <h3>Introduction to Mentorship</h3>
-                  <div class="sub">ENTC Department's Mentorship Programme</div>
-                </div>
-              </div>
-              <div class="card-mid">
-                <p>The ENTC Department at the University of Moratuwa is excited to introduce a structured mentorship program aimed at guiding undergraduate students in their academic, research, and career journeys. This initiative connects students with experienced mentors from academia and industry, offering personalized guidance and support to help students thrive. As a mentor, your expertise will play a pivotal role in shaping the future of the next generation of engineers, researchers, and industry professionals.</p>
-              </div>
-            </div>
-    
-            <div class="card">
-              <div class="card-top">
-                <div class="avatar">Mentor</div>
-                <div>
-                  <h3>Why Become a Mentor?</h3>
-                  <div class="sub">Impact, Career Growth, Networking, Recognition</div>
-                </div>
-              </div>
-              <div class="card-mid">
-                <p>Mentoring offers alumni and industry professionals the opportunity to give back to the ENTC community by sharing valuable knowledge, experiences, and guidance. As a mentor, you will help students navigate their academic and professional paths, refine their skills, and guide them toward their career goals. Additionally, mentoring can enhance your own leadership, coaching, and communication skills, making you a more well-rounded professional. You will also expand your network by connecting with talented students and fellow mentors from diverse fields.</p>
-              </div>
-            </div>
-    
-            <div class="card">
-              <div class="card-top">
-                <div class="avatar">Expectations</div>
-                <div>
-                  <h3>Expectations from Mentors</h3>
-                  <div class="sub">Guidance and Time Commitment</div>
-                </div>
-              </div>
-              <div class="card-mid">
-                <p>As a mentor, you will be expected to provide career and research guidance, offer constructive feedback on student projects, and assist with the development of key professional skills. You will help students identify their preferred career path or research focus and support them in setting and achieving their goals. We recommend meeting with your mentees at least once every two weeks to ensure ongoing support and growth. Mentors will guide a group of 2-5 students, ensuring that you can provide tailored mentorship to each mentee based on their individual needs and aspirations.</p>
-              </div>
-            </div>
-    
-            <div class="card">
-              <div class="card-top">
-                <div class="avatar">Registration</div>
-                <div>
-                  <h3>How to Get Involved</h3>
-                  <div class="sub">Mentor Registration Form</div>
-                </div>
-              </div>
-              <div class="card-mid">
-                <p>Joining the ENTC Mentorship Program as a mentor is simple. To get started, please fill out the <a href="https://forms.gle/i4kT9irTQvapHViG9" target="_blank" class="register-link">mentor registration form</a>. Once registered, you will be invited to an onboarding session where you will learn more about the program structure, role expectations, and how you can best support your mentees. The session will provide you with the tools and knowledge needed to make the mentorship experience impactful for both you and your mentees.</p>
-              </div>
-            </div>
-    
-            <div class="card">
-              <div class="card-top">
-                <div class="avatar">Success</div>
-                <div>
-                  <h3>Success Stories</h3>
-                  <div class="sub">Mentor Testimonials</div>
-                </div>
-              </div>
-              <div class="card-mid">
-                <p>"Being a mentor has been one of the most rewarding experiences of my career. I’ve had the opportunity to guide talented students through their academic and professional journeys, and in turn, I’ve learned a lot from their fresh perspectives. It's truly inspiring to watch them grow and succeed. I encourage any alumni or professional to join the ENTC Mentorship Program—it's an investment in both the future of engineering and in your personal development as a mentor." — Mentor, ENTC Mentorship Program</p>
-              </div>
-            </div>
-    
-            <div class="card">
-              <div class="card-top">
-                <div class="avatar">Resources</div>
-                <div>
-                  <h3>Resources for Mentors</h3>
-                  <div class="sub">Mentor Support</div>
-                </div>
-              </div>
-              <div class="card-mid">
-                <p>As a mentor, you will have access to a variety of resources to support your mentorship journey. These include communication guidelines, best practices for mentorship, and a detailed onboarding presentation. You can also reach out to the program coordinators for additional support and clarification as needed. The goal is to ensure you feel equipped and confident in your ability to provide the best possible guidance to your mentees.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <footer>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
       <div class="container">
-        <div class="footer-inner">
-          <div>
-            <strong>ENTC Department</strong> · Mentorship Programme
-            <div class="meta">For queries: <span class="mono">rahmanmfa.23@uom.lk</span></div>
+        <div class="hero-card">
+          <div class="hero-inner">
+            <h1>Welcome Mentors</h1>
+            <p class="choose-role">Learn more about the ENTC Department and the E-Club.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#about">Learn More</a>
+              <a class="btn btn-primary" href="index.html">Back to Homepage</a>
+              <a class="btn btn-primary" href="https://forms.gle/i4kT9irTQvapHViG9" target="_blank">Register</a> <!-- New Register Button -->
+            </div>
           </div>
-          <div class="meta">© 2026 · Maintained by <span class="mono">E-Club of University of Moratuwa</span></div>
         </div>
       </div>
-    </footer>
-    </body>
-</html>
+    </section>
+
+    <section id="about" class="grid">
+      <div class="container">
+        <div class="card">
+          <div class="card-top">
+            <div class="avatar">ENTC</div>
+            <div>
+              <h3>Introduction to Mentorship</h3>
+              <div class="sub">ENTC Department's Mentorship Programme</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>The ENTC Department at the University of Moratuwa is excited to introduce a structured mentorship program aimed at guiding undergraduate students in their academic, research, and career journeys. This initiative connects students with experienced mentors from academia and industry, offering personalized guidance and support to help students thrive. As a mentor, your expertise will play a pivotal role in shaping the future of the next generation of engineers, researchers, and industry professionals.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="avatar">Mentor</div>
+            <div>
+              <h3>Why Become a Mentor?</h3>
+              <div class="sub">Impact, Career Growth, Networking, Recognition</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>Mentoring offers alumni and industry professionals the opportunity to give back to the ENTC community by sharing valuable knowledge, experiences, and guidance. As a mentor, you will help students navigate their academic and professional paths, refine their skills, and guide them toward their career goals. Additionally, mentoring can enhance your own leadership, coaching, and communication skills, making you a more well-rounded professional. You will also expand your network by connecting with talented students and fellow mentors from diverse fields.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="avatar">Expectations</div>
+            <div>
+              <h3>Expectations from Mentors</h3>
+              <div class="sub">Guidance and Time Commitment</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>As a mentor, you will be expected to provide career and research guidance, offer constructive feedback on student projects, and assist with the development of key professional skills. You will help students identify their preferred career path or research focus and support them in setting and achieving their goals. We recommend meeting with your mentees at least once every two weeks to ensure ongoing support and growth. Mentors will guide a group of 2-5 students, ensuring that you can provide tailored mentorship to each mentee based on their individual needs and aspirations.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="avatar">Registration</div>
+            <div>
+              <h3>How to Get Involved</h3>
+              <div class="sub">Mentor Registration Form</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>Joining the ENTC Mentorship Program as a mentor is simple. To get started, please fill out the <a href="https://forms.gle/i4kT9irTQvapHViG9" target="_blank" class="register-link">mentor registration form</a>. Once registered, you will be invited to an onboarding session where you will learn more about the program structure, role expectations, and how you can best support your mentees. The session will provide you with the tools and knowledge needed to make the mentorship experience impactful for both you and your mentees.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="avatar">Success</div>
+            <div>
+              <h3>Success Stories</h3>
+              <div class="sub">Mentor Testimonials</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>"Being a mentor has been one of the most rewarding experiences of my career. I’ve had the opportunity to guide talented students through their academic and professional journeys, and in turn, I’ve learned a lot from their fresh perspectives. It's truly inspiring to watch them grow and succeed. I encourage any alumni or professional to join the ENTC Mentorship Program—it's an investment in both the future of engineering and in your personal development as a mentor." — Mentor, ENTC Mentorship Program</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="avatar">Resources</div>
+            <div>
+              <h3>Resources for Mentors</h3>
+              <div class="sub">Mentor Support</div>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p>As a mentor, you will have access to a variety of resources to support your mentorship journey. These include communication guidelines, best practices for
