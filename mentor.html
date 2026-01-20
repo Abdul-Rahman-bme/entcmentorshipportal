@@ -223,6 +223,8 @@
       display: flex;
       flex-direction: column;
       transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
+      /* Add margin below each card to create space */
+      margin-bottom: 20px; /* You can adjust this value to change the spacing */
     }
     
     .card:hover {
@@ -239,7 +241,7 @@
     }
     
     .avatar {
-      width: 42px;
+      width: 100px;
       height: 42px;
       border-radius: 14px;
       display: grid;
@@ -278,6 +280,27 @@
       color: #003366; /* Darker blue on hover for better visibility */
       text-decoration: none; /* Optional: Removes underline on hover if you prefer */
     }
+    /* Footer Background */
+    footer {
+      background-color: #F3B600; /* Yellow color for footer */
+      padding: 20px 0; /* Adjust padding for the footer */
+    }
+    
+    .footer-inner {
+      display: flex;
+      justify-content: space-between; /* Align content to left and right */
+      align-items: center;
+      color: #192041; /* Dark text color for footer text */
+    }
+    
+    .footer-inner .meta {
+      color: #192041; /* Text color for meta text */
+    }
+    
+    .footer-inner .mono {
+      font-family: var(--mono); /* Ensure monospace font for special text */
+    }
+
       </style>
     </head>
     
@@ -397,17 +420,16 @@
           </div>
         </section>
       </main>
-    
       <footer>
-        <div class="container">
-          <div class="footer-inner">
-            <div>
-              <strong>ENTC Department</strong> · Mentorship Programme
-              <div class="meta">For queries: <span class="mono">rahmanmfa.23@uom.lk</span></div>
-            </div>
-            <div class="meta">© 2026 · Maintained by <span class="mono">E-Club of University of Moratuwa</span></div>
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            <strong>ENTC Department</strong> · Mentorship Programme
+            <div class="meta">For queries: <span class="mono">rahmanmfa.23@uom.lk</span></div>
           </div>
+          <div class="meta">© 2026 · Maintained by <span class="mono">E-Club of University of Moratuwa</span></div>
         </div>
-      </footer>
+      </div>
+    </footer>
     </body>
 </html>
