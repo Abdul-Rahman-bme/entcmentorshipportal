@@ -8,47 +8,48 @@
 
   <style>
     /* Add your existing CSS styles from the mentee.html here, as it will maintain consistency */
-    :root{
-      --bg: #f6f8fb;
-      --surface: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: #e2e8f0;
-      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
-
-      /* University-style palette (edit these to match your institute) */
-      --primary: #0b2a5b;   /* deep navy */
-      --primary-2: #123a78;
-      --accent: #caa048;    /* warm gold */
-      --accent-2: #f1e4c3;
-
-      --radius: 18px;
-      --radius-sm: 14px;
-      --ring: 0 0 0 4px rgba(11, 42, 91, .12);
-
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    :root {
+      /* Updated color scheme */
+      --bg: #0E1E84; /* Dark blue background for main section */
+      --surface: #ffffff; /* White background for cards (no change) */
+      --text: #0f172a; /* Black text */
+      --muted: #475569; /* Muted text for secondary info */
+      --border: #e2e8f0; /* Border color */
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08); /* Soft shadow for elements */
+    
+      /* Primary and accent colors based on the provided color codes */
+      --primary: #192041; /* Dark blue for buttons, topbar, etc. */
+      --accent: #F3B600; /* Yellow for footer */
+      --accent-2: #F1E4C3; /* Lighter goldish accent (unchanged) */
+    
+      --radius: 18px; /* Border radius for rounded elements */
+      --radius-sm: 14px; /* Smaller radius for compact elements */
+      --ring: 0 0 0 4px rgba(11, 42, 91, .12); /* Focus ring */
     }
-
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
-    body{
+    
+    * { box-sizing: border-box; }
+    
+    html, body { height: 100%; }
+    
+    body {
       margin: 0;
       font-family: var(--sans);
       color: var(--text);
-      background: radial-gradient(1200px 800px at 12% -10%, rgba(202,160,72,.18), transparent 55%),
-                  radial-gradient(900px 650px at 85% -20%, rgba(11,42,91,.18), transparent 60%),
-                  var(--bg);
+      background: var(--bg); /* Apply the dark blue background for the body */
       line-height: 1.5;
     }
-
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-
-    .container{ width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-
-    /* Top bar */
-    .topbar{
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Top bar styling */
+    .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
@@ -56,187 +57,182 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(226,232,240,.75);
     }
-
-    .topbar-inner{
+    
+    .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 12px 0;
       gap: 14px;
     }
-
-    .brand{
+    
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
       min-width: 230px;
     }
-
-    .crest{
+    
+    .crest {
       width: 42px;
       height: 42px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      background: linear-gradient(135deg, var(--primary), var(--primary-2)); /* Dark blue */
       display: grid;
       place-items: center;
       color: white;
       box-shadow: 0 10px 18px rgba(11,42,91,.18);
       border: 1px solid rgba(255,255,255,.25);
     }
-
-    .crest svg{ width: 22px; height: 22px; opacity: .96; }
-
-    .brand-text{
+    
+    .crest svg {
+      width: 22px;
+      height: 22px;
+      opacity: .96;
+    }
+    
+    .brand-text {
       display: flex;
       flex-direction: column;
       gap: 2px;
       line-height: 1.2;
     }
-
-    .brand-text strong{
+    
+    .brand-text strong {
       font-size: 14px;
       letter-spacing: .2px;
     }
-
-    .brand-text span{
+    
+    .brand-text span {
       font-size: 12px;
       color: var(--muted);
     }
-
-    .nav{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .pill{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.8);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: var(--muted);
-      transition: transform .08s ease, border-color .15s ease, background .15s ease;
-      user-select: none;
-    }
-
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(11,42,91,.25); background: #fff; }
-
-    .btn{
+    
+    /* Buttons with updated colors */
+    .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       border: 1px solid rgba(11,42,91,.25);
       background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
-      color: var(--primary);
-      padding: 18px 24px; /* Adjust button size (padding for height and width) */
+      color: var(--primary); /* Apply dark blue color to button text */
+      padding: 18px 24px; /* Adjust button size */
       border-radius: 999px;
       font-weight: 600;
-      font-size: 15px; /* Adjust font size */
+      font-size: 15px;
       transition: transform .08s ease, box-shadow .15s ease;
     }
-
-    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 25px rgba(11,42,91,.10); text-decoration: none; }
-
-    .btn-primary{
+    
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(11,42,91,.10);
+      text-decoration: none;
+    }
+    
+    .btn-primary {
       border-color: rgba(11,42,91,.35);
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      background: var(--primary); /* Dark blue background for buttons */
       color: #fff;
     }
-
-    .btn-primary:hover{ box-shadow: 0 14px 30px rgba(11,42,91,.18); }
-
-    .hero{
+    
+    .btn-primary:hover {
+      box-shadow: 0 14px 30px rgba(11,42,91,.18);
+    }
+    
+    /* Hero section with updated background */
+    .hero {
       padding: 32px 0 18px;
       text-align: center;
     }
-
+    
     .hero-inner {
       display: flex;
-      flex-direction: column; /* Stack the elements vertically */
-      align-items: center; /* Center the text and the new phrase */
-      gap: 10px; /* Space between elements */
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
     
     .choose-role {
-      font-size: 18px; /* Font size for the small text */
-      font-weight: 500; /* Make the text slightly bold */
-      color: var(--primary); /* Set the text color to match the primary color */
-      margin-top: 10px; /* Add some space between the heading and the text */
-      margin-bottom: 20px; /* Add space between the text and the buttons */
-      text-align: center; /* Center-align the text */
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--primary); /* Dark blue color for text */
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
     }
     
     .hero-actions {
       display: flex;
-      gap: 20px; /* Space between the buttons */
-      justify-content: flex-end; /* Align buttons to the right */
-      width: 100%; /* Make sure it stretches the full width of the container */
+      gap: 20px;
+      justify-content: flex-end;
+      width: 100%;
     }
-
+    
     .hero-card {
-      padding: 40px 24px; /* Adjust padding for height */
-      height: auto; /* Let the box adjust height based on content */
+      padding: 40px 24px;
+      height: auto;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
       border: 3px solid rgba(226,232,240,.9); /* Increased border weight */
       border-radius: calc(var(--radius) + 8px);
       overflow: hidden;
     }
-
+    
     .hero-inner {
-      margin-bottom: 20px; /* Space between the text/buttons and the image */
+      margin-bottom: 20px;
     }
     
     .hero-image {
-      width: 100%; /* Image fills the width of the container */
-      height: 500px; /* Set a fixed height for the image */
+      width: 100%;
+      height: 500px;
       overflow: hidden;
-      border-radius: 8px; /* Optional: rounded corners for the image */
+      border-radius: 8px;
     }
     
     .hero-image img {
       width: 100%;
       height: 100%;
-      object-position: center; /* Centers the image */
+      object-position: center;
     }
-
-
-
-    h1{
+    
+    h1 {
       font-size: clamp(26px, 3vw, 36px);
       margin: 0 0 10px;
       letter-spacing: -.4px;
     }
-    .grid{
+    
+    /* Grid layout with updated background */
+    .grid {
       padding: 18px 0 40px;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(1, minmax(0, 1fr)); /* One column for the grid */
       gap: 14px;
     }
-
-    .card{
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: calc(var(--radius) + 2px);
-      box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
+    
+    .card {
+      background: var(--surface); /* White background for cards */
+      border: 1px solid var(--border); /* Lighter border color */
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(2,6,23,.06);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
     }
-
-    .card:hover{ transform: translateY(-2px); box-shadow: 0 18px 38px rgba(2,6,23,.10); border-color: rgba(11,42,91,.22); }
-
-    .card-top{
-      padding: 14px 14px 10px;
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(2,6,23,.10);
+      border-color: var(--primary); /* Dark border color on hover */
+    }
+    
+    .card-top {
+      padding: 14px;
       display: flex;
       gap: 12px;
       align-items: flex-start;
     }
-
-    .avatar{
+    
+    .avatar {
       width: 42px;
       height: 42px;
       border-radius: 14px;
@@ -246,20 +242,20 @@
       border: 1px solid rgba(226,232,240,.9);
       font-weight: 800;
       color: var(--primary);
-      flex: none;
     }
-
-    .card h3{
+    
+    .card h3 {
       margin: 0;
       font-size: 15px;
       letter-spacing: -.1px;
     }
-
-    .sub{
+    
+    .sub {
       margin: 2px 0 0;
       color: var(--muted);
       font-size: 12px;
     }
+
   </style>
 </head>
 
