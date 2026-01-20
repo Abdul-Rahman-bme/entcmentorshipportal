@@ -10,251 +10,264 @@
   <style>
     /* Root Variables: These define global styles that you can adjust easily */
     :root {
-      /* Background and surface colors */
-      --bg: #f6f8fb; /* Background color */
-      --surface: #ffffff; /* Surface color for cards and containers */
-      --text: #0f172a; /* Text color */
-      --muted: #475569; /* Muted text color (used for secondary text) */
+      /* Updated color scheme */
+      --bg: #192041; /* Dark blue background for main sections (hero and body) */
+      --surface: #ffffff; /* White for card backgrounds */
+      --text: #0f172a; /* Text color (no change, remains black) */
+      --muted: #475569; /* Muted text color */
       --border: #e2e8f0; /* Border color */
-      --shadow: 0 10px 30px rgba(2, 6, 23, .08); /* Box shadow for cards */
-
-      /* Primary and secondary colors (used for buttons and highlights) */
-      --primary: #0b2a5b; /* Dark blue */
-      --primary-2: #123a78; /* Lighter shade of blue */
-      --accent: #caa048; /* Accent color (goldish) */
-      --accent-2: #f1e4c3; /* Lighter accent color */
-
-      /* Border radius values */
-      --radius: 18px; /* Default rounded corners */
-      --radius-sm: 14px; /* Smaller rounded corners for elements like buttons */
-      
-      /* Ring style used for focus states */
-      --ring: 0 0 0 4px rgba(11, 42, 91, .12);
-
-      /* Font family variables */
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08); /* Soft shadow for elements */
+    
+      /* Primary and accent colors based on the provided color codes */
+      --primary: #0E1E84; /* Normal blue for buttons and other interactive elements */
+      --accent: #F3B600; /* Yellow for footer */
+      --accent-2: #f1e4c3; /* Lighter goldish accent (unchanged) */
+    
+      --radius: 18px; /* Border radius for rounded elements */
+      --radius-sm: 14px; /* Smaller radius for compact elements */
+      --ring: 0 0 0 4px rgba(11, 42, 91, .12); /* Focus ring */
     }
-
-    /* Universal selector to apply box-sizing across the entire document */
+    
     * { 
       box-sizing: border-box; 
     }
-
-    /* Basic styling for the body */
+    
     html, body { 
       height: 100%; 
     }
+    
     body {
-      margin: 0; /* Removes default margin */
-      font-family: var(--sans); /* Applies sans-serif font */
-      color: var(--text); /* Uses the primary text color */
-      background: var(--bg); /* Sets background color */
-      line-height: 1.5; /* Increases line height for readability */
+      margin: 0; 
+      font-family: var(--sans); 
+      color: var(--text); 
+      background: var(--bg); /* Apply the dark blue background for the body */
+      line-height: 1.5;
     }
-
-    /* Hyperlinks default styles */
+    
     a {
-      color: inherit; /* Makes links inherit the text color */
-      text-decoration: none; /* Removes underline */
+      color: inherit;
+      text-decoration: none;
     }
+    
     a:hover {
-      text-decoration: underline; /* Adds underline on hover for links */
+      text-decoration: underline;
     }
-
-    /* Container styling: Centers content on the page */
-    .container {
-      width: min(1180px, calc(100% - 40px)); /* Limits max width to 1180px, adds margin on smaller screens */
-      margin: 0 auto; /* Centers the container */
-    }
-
-    /* Styling for the top navigation bar */
+    
+    /* Top bar styling */
     .topbar {
-      position: sticky; /* Keeps topbar fixed on the top while scrolling */
-      top: 0; /* Aligns to the top */
-      z-index: 50; /* Ensures topbar stays above other elements */
-      background: rgba(246,248,251,.88); /* Slightly transparent background */
-      backdrop-filter: blur(10px); /* Adds a blur effect to background behind the topbar */
-      border-bottom: 1px solid rgba(226,232,240,.75); /* Adds a light border under the topbar */
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,248,251,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226,232,240,.75);
     }
-
+    
     .topbar-inner {
       display: flex;
-      align-items: center; /* Centers items vertically */
-      justify-content: space-between; /* Aligns content on either side of the topbar */
+      align-items: center;
+      justify-content: space-between;
       padding: 12px 0;
-      gap: 14px; /* Adds space between elements */
+      gap: 14px;
     }
-
+    
     .brand {
       display: flex;
-      align-items: center; /* Centers the logo and text vertically */
-      gap: 12px; /* Adds space between logo and text */
-      min-width: 230px; /* Ensures brand section has a minimum width */
+      align-items: center;
+      gap: 12px;
+      min-width: 230px;
     }
-
+    
     .crest {
-      width: 50px; /* Sets the size of the logo circle */
+      width: 50px; /* Size of logo circle */
       height: 50px;
-      border-radius: 12px; /* Rounds the corners of the logo circle */
-      background: linear-gradient(135deg, var(--primary), var(--primary-2)); /* Creates a gradient background */
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2)); /* Blue color */
       display: grid;
-      place-items: center; /* Centers the logo inside the circle */
-      color: white; /* White color for logo */
-      box-shadow: 0 10px 18px rgba(11,42,91,.18); /* Adds a soft shadow for a 3D effect */
-      border: 1px solid rgba(255,255,255,.25); /* Adds a subtle white border */
+      place-items: center;
+      color: white;
+      box-shadow: 0 10px 18px rgba(11,42,91,.18);
+      border: 1px solid rgba(255,255,255,.25);
     }
-
+    
     .crest svg {
-      width: 30px; /* Adjusts the size of the SVG logo inside the crest */
+      width: 30px;
       height: 30px;
-      opacity: .96; /* Slightly reduces opacity */
+      opacity: .96;
     }
-
-    /* Brand text styles */
+    
     .brand-text {
       display: flex;
-      flex-direction: column; /* Stacks the text vertically */
+      flex-direction: column;
       gap: 2px;
-      line-height: 1.2; /* Increases line height for readability */
+      line-height: 1.2;
     }
-
+    
     .brand-text strong {
-      font-size: 14px; /* Sets the font size for the bold text */
-      letter-spacing: .2px; /* Adds space between letters */
+      font-size: 14px;
+      letter-spacing: .2px;
     }
-
+    
     .brand-text span {
-      font-size: 12px; /* Smaller font size for secondary text */
-      color: var(--muted); /* Uses the muted color for less important text */
+      font-size: 12px;
+      color: var(--muted);
     }
-
-    /* Hero section styling */
-    .hero {
-      padding: 32px 0 18px; /* Adds padding for top and bottom */
-      text-align: center; /* Centers the text inside the hero section */
-    }
-
-    .hero-inner {
-      display: flex;
-      justify-content: center; /* Centers content inside the section */
-      gap: 24px; /* Adds space between elements */
-      flex-direction: column; /* Stacks the elements vertically */
-    }
-
-    .hero-card {
-      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.70)); /* Light gradient background */
-      border: 1px solid rgba(226,232,240,.9); /* Adds a subtle border around the card */
-      border-radius: calc(var(--radius) + 8px); /* Adds rounded corners */
-      box-shadow: var(--shadow); /* Applies a shadow to give the card depth */
-      overflow: hidden; /* Ensures no content overflows */
-    }
-
-    h1 {
-      font-size: clamp(26px, 3vw, 36px); /* Uses a responsive font size */
-      margin: 0 0 10px; /* Removes margin from top and adds margin at the bottom */
-      letter-spacing: -.4px; /* Slightly reduces space between letters */
-    }
-
-    .hero-actions {
-      margin-top: 7px; /* Adds space above the action buttons */
-      display: flex;
-      gap: 10px; /* Adds space between buttons */
-      flex-wrap: wrap; /* Allows the buttons to wrap in smaller screens */
-    }
-
-    /* Button styles */
+    
+    /* Buttons with updated colors */
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid rgba(11,42,91,.25); /* Adds a border to buttons */
-      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03)); /* Gradient background */
-      color: var(--primary); /* Uses primary color for text */
-      padding: 18px 24px; /* Adds padding for button height and width */
-      border-radius: 999px; /* Creates rounded buttons */
-      font-weight: 600; /* Makes the text bold */
-      font-size: 15px; /* Sets a moderate font size */
-      transition: transform .08s ease, box-shadow .15s ease; /* Smooth hover transitions */
+      border: 1px solid rgba(11,42,91,.25);
+      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
+      color: var(--primary); /* Blue button text */
+      padding: 18px 24px; /* Button size */
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform .08s ease, box-shadow .15s ease;
     }
-
+    
     .btn:hover {
-      transform: translateY(-1px); /* Moves the button slightly up on hover */
-      box-shadow: 0 12px 25px rgba(11,42,91,.10); /* Adds shadow on hover */
-      text-decoration: none; /* Removes underline on hover */
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(11,42,91,.10);
+      text-decoration: none;
     }
-
+    
     .btn-primary {
-      border-color: rgba(11,42,91,.35); /* Darker border color */
-      background: var(--primary); /* Dark blue background */
+      border-color: rgba(11,42,91,.35);
+      background: var(--primary); /* Blue button background */
       color: #fff; /* White text */
     }
-
+    
     .btn-primary:hover {
-      box-shadow: 0 14px 30px rgba(11,42,91,.18); /* Adds more shadow on hover */
+      box-shadow: 0 14px 30px rgba(11,42,91,.18);
     }
-
-    /* Grid layout for sections like mentor introduction, why become a mentor, etc. */
-    .grid {
-      display: block; /* Switches from grid to block-level layout (one column) */
-      margin-top: 20px;
+    
+    /* Hero section with updated background */
+    .hero {
+      padding: 32px 0 18px;
+      text-align: center;
     }
-
-    .card {
-      background: rgba(255,255,255,.88); /* Light background for cards */
-      border: 1px solid rgba(226,232,240,.9); /* Subtle border */
-      border-radius: var(--radius); /* Rounded corners */
-      box-shadow: 0 10px 24px rgba(2,6,23,.06); /* Light shadow effect */
-      overflow: hidden; /* Ensures no content overflows */
+    
+    .hero-inner {
       display: flex;
-      flex-direction: column; /* Stack card content vertically */
-      margin-bottom: 20px; /* Adds space between cards */
-      width: 100%; /* Makes the card span the entire width of the container */
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .choose-role {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--primary); /* Blue text */
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center; /* Center the buttons */
+      width: 100%;
+    }
+    
+    .hero-card {
+      padding: 40px 24px;
+      height: auto;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      border: 3px solid rgba(226,232,240,.9); /* Increased border weight */
+      border-radius: calc(var(--radius) + 8px);
+      overflow: hidden;
+      background: var(--surface); /* White card background */
+    }
+    
+    .hero-inner {
+      margin-bottom: 20px;
+    }
+    
+    .hero-image {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-position: center;
+    }
+    
+    h1 {
+      font-size: clamp(26px, 3vw, 36px);
+      margin: 0 0 10px;
+      letter-spacing: -.4px;
+    }
+    
+    /* Grid layout with updated background */
+    .grid {
+      padding: 18px 0 40px;
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr)); /* One column for the grid */
+      gap: 14px;
+    }
+    
+    .card {
+      background: var(--surface); /* White background for the cards */
+      border: 1px solid var(--border); /* Light border color */
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(2,6,23,.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
     }
-
+    
     .card:hover {
-      transform: translateY(-2px); /* Moves the card slightly up on hover */
-      box-shadow: 0 18px 38px rgba(2,6,23,.10); /* Adds stronger shadow on hover */
-      border-color: rgba(11,42,91,.22); /* Darkens the border color on hover */
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(2,6,23,.10);
+      border-color: var(--primary); /* Dark border color on hover */
     }
-
+    
     .card-top {
       padding: 14px;
       display: flex;
       gap: 12px;
-      align-items: flex-start; /* Aligns items to the left */
+      align-items: flex-start;
     }
-
+    
     .avatar {
-      width: 80px; /* Size of the avatar */
+      width: 42px;
       height: 42px;
-      border-radius: 14px; /* Rounded avatar */
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16)); /* Gradient background */
-      border: 1px solid rgba(226,232,240,.9); /* Border for avatar */
-      font-weight: 800; /* Makes the avatar text bold */
+      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16));
+      border: 1px solid rgba(226,232,240,.9);
+      font-weight: 800;
       color: var(--primary); /* Uses primary color for text */
     }
-
+    
     .card h3 {
       margin: 0;
-      font-size: 15px; /* Font size for heading */
-      letter-spacing: -.1px; /* Slightly tightens letter spacing */
+      font-size: 15px;
+      letter-spacing: -.1px;
     }
-
+    
     .sub {
       margin: 2px 0 0;
       color: var(--muted); /* Muted color for subtext */
       font-size: 12px; /* Smaller font size for subtext */
     }
-
+    
     .card-mid {
       padding: 14px;
-      font-size: 14px; /* Font size for card text */
+      font-size: 14px;
       color: var(--muted); /* Muted text color */
     }
+    
     /* Styling for the hyperlink (for mentor registration) */
     .register-link {
       color: var(--primary); /* Sets the link color to the primary dark blue */
@@ -265,137 +278,136 @@
       color: #003366; /* Darker blue on hover for better visibility */
       text-decoration: none; /* Optional: Removes underline on hover if you prefer */
     }
-
-  </style>
-</head>
-
-<body>
-  <header class="topbar" role="banner">
-    <div class="container">
-      <div class="topbar-inner">
-        <a class="brand" href="index.html" aria-label="ENTC Mentorship Portal Home">
-          <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
-            <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
-          </div>
-          <div class="brand-text">
-            <strong>ENTC Mentorship Portal</strong>
-            <span>Department of Electronics & Telecommunication</span>
-            <span>University of Moratuwa</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="container">
-        <div class="hero-card">
-          <div class="hero-inner">
-            <h1>Welcome Mentors</h1>
-            <!-- Move the text below the title -->
-            <p>Learn more about the ENTC Department and the E-Club.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#about">Learn More</a>
-              <a class="btn btn-primary" href="index.html">Back to Homepage</a>
-            </div>
+      </style>
+    </head>
+    
+    <body>
+      <header class="topbar" role="banner">
+        <div class="container">
+          <div class="topbar-inner">
+            <a class="brand" href="index.html" aria-label="ENTC Mentorship Portal Home">
+              <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
+                <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
+              </div>
+              <div class="brand-text">
+                <strong>ENTC Mentorship Portal</strong>
+                <span>Department of Electronics & Telecommunication</span>
+                <span>University of Moratuwa</span>
+              </div>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="about" class="grid">
-      <div class="container">
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">ENTC</div>
+      </header>
+    
+      <main id="top">
+        <section class="hero">
+          <div class="container">
+            <div class="hero-card">
+              <div class="hero-inner">
+                <h1>Welcome Mentors</h1>
+                <p class="choose-role">Learn more about the ENTC Department and the E-Club.</p>
+                <div class="hero-actions">
+                  <a class="btn btn-primary" href="#about">Learn More</a>
+                  <a class="btn btn-primary" href="index.html">Back to Homepage</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    
+        <section id="about" class="grid">
+          <div class="container">
+            <div class="card">
+              <div class="card-top">
+                <div class="avatar">ENTC</div>
+                <div>
+                  <h3>Introduction to Mentorship</h3>
+                  <div class="sub">ENTC Department's Mentorship Programme</div>
+                </div>
+              </div>
+              <div class="card-mid">
+                <p>The ENTC Department at the University of Moratuwa is excited to introduce a structured mentorship program aimed at guiding undergraduate students in their academic, research, and career journeys. This initiative connects students with experienced mentors from academia and industry, offering personalized guidance and support to help students thrive. As a mentor, your expertise will play a pivotal role in shaping the future of the next generation of engineers, researchers, and industry professionals.</p>
+              </div>
+            </div>
+    
+            <div class="card">
+              <div class="card-top">
+                <div class="avatar">Mentor</div>
+                <div>
+                  <h3>Why Become a Mentor?</h3>
+                  <div class="sub">Impact, Career Growth, Networking, Recognition</div>
+                </div>
+              </div>
+              <div class="card-mid">
+                <p>Mentoring offers alumni and industry professionals the opportunity to give back to the ENTC community by sharing valuable knowledge, experiences, and guidance. As a mentor, you will help students navigate their academic and professional paths, refine their skills, and guide them toward their career goals. Additionally, mentoring can enhance your own leadership, coaching, and communication skills, making you a more well-rounded professional. You will also expand your network by connecting with talented students and fellow mentors from diverse fields.</p>
+              </div>
+            </div>
+    
+            <div class="card">
+              <div class="card-top">
+                <div class="avatar">Expectations</div>
+                <div>
+                  <h3>Expectations from Mentors</h3>
+                  <div class="sub">Guidance and Time Commitment</div>
+                </div>
+              </div>
+              <div class="card-mid">
+                <p>As a mentor, you will be expected to provide career and research guidance, offer constructive feedback on student projects, and assist with the development of key professional skills. You will help students identify their preferred career path or research focus and support them in setting and achieving their goals. We recommend meeting with your mentees at least once every two weeks to ensure ongoing support and growth. Mentors will guide a group of 2-5 students, ensuring that you can provide tailored mentorship to each mentee based on their individual needs and aspirations.</p>
+              </div>
+            </div>
+    
+            <div class="card">
+              <div class="card-top">
+                <div class="avatar">Registration</div>
+                <div>
+                  <h3>How to Get Involved</h3>
+                  <div class="sub">Mentor Registration Form</div>
+                </div>
+              </div>
+              <div class="card-mid">
+                <p>Joining the ENTC Mentorship Program as a mentor is simple. To get started, please fill out the <a href="https://forms.gle/i4kT9irTQvapHViG9" target="_blank" class="register-link">mentor registration form</a>. Once registered, you will be invited to an onboarding session where you will learn more about the program structure, role expectations, and how you can best support your mentees. The session will provide you with the tools and knowledge needed to make the mentorship experience impactful for both you and your mentees.</p>
+              </div>
+            </div>
+    
+            <div class="card">
+              <div class="card-top">
+                <div class="avatar">Success</div>
+                <div>
+                  <h3>Success Stories</h3>
+                  <div class="sub">Mentor Testimonials</div>
+                </div>
+              </div>
+              <div class="card-mid">
+                <p>"Being a mentor has been one of the most rewarding experiences of my career. I’ve had the opportunity to guide talented students through their academic and professional journeys, and in turn, I’ve learned a lot from their fresh perspectives. It's truly inspiring to watch them grow and succeed. I encourage any alumni or professional to join the ENTC Mentorship Program—it's an investment in both the future of engineering and in your personal development as a mentor." — Mentor, ENTC Mentorship Program</p>
+              </div>
+            </div>
+    
+            <div class="card">
+              <div class="card-top">
+                <div class="avatar">Resources</div>
+                <div>
+                  <h3>Resources for Mentors</h3>
+                  <div class="sub">Mentor Support</div>
+                </div>
+              </div>
+              <div class="card-mid">
+                <p>As a mentor, you will have access to a variety of resources to support your mentorship journey. These include communication guidelines, best practices for mentorship, and a detailed onboarding presentation. You can also reach out to the program coordinators for additional support and clarification as needed. The goal is to ensure you feel equipped and confident in your ability to provide the best possible guidance to your mentees.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    
+      <footer>
+        <div class="container">
+          <div class="footer-inner">
             <div>
-              <h3>Introduction to Mentorship</h3>
-              <div class="sub">ENTC Department's Mentorship Programme</div>
+              <strong>ENTC Department</strong> · Mentorship Programme
+              <div class="meta">For queries: <span class="mono">rahmanmfa.23@uom.lk</span></div>
             </div>
-          </div>
-          <div class="card-mid">
-            <p>The ENTC Department at the University of Moratuwa is excited to introduce a structured mentorship program aimed at guiding undergraduate students in their academic, research, and career journeys. This initiative connects students with experienced mentors from academia and industry, offering personalized guidance and support to help students thrive. As a mentor, your expertise will play a pivotal role in shaping the future of the next generation of engineers, researchers, and industry professionals.</p>
+            <div class="meta">© 2026 · Maintained by <span class="mono">E-Club of University of Moratuwa</span></div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Mentor</div>
-            <div>
-              <h3>Why Become a Mentor?</h3>
-              <div class="sub">Impact, Career Growth, Networking, Recognition</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>Mentoring offers alumni and industry professionals the opportunity to give back to the ENTC community by sharing valuable knowledge, experiences, and guidance. As a mentor, you will help students navigate their academic and professional paths, refine their skills, and guide them toward their career goals. Additionally, mentoring can enhance your own leadership, coaching, and communication skills, making you a more well-rounded professional. You will also expand your network by connecting with talented students and fellow mentors from diverse fields.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Expectations</div>
-            <div>
-              <h3>Expectations from Mentors</h3>
-              <div class="sub">Guidance and Time Commitment</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>As a mentor, you will be expected to provide career and research guidance, offer constructive feedback on student projects, and assist with the development of key professional skills. You will help students identify their preferred career path or research focus and support them in setting and achieving their goals. We recommend meeting with your mentees at least once every two weeks to ensure ongoing support and growth. Mentors will guide a group of 2-5 students, ensuring that you can provide tailored mentorship to each mentee based on their individual needs and aspirations.</p>
-          </div>
-
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Registration</div>
-            <div>
-              <h3>How to Get Involved</h3>
-              <div class="sub">Mentor Registration Form</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>Joining the ENTC Mentorship Program as a mentor is simple. To get started, please fill out the <a href="https://forms.gle/i4kT9irTQvapHViG9" target="_blank" class="register-link">mentor registration form</a>. Once registered, you will be invited to an onboarding session where you will learn more about the program structure, role expectations, and how you can best support your mentees. The session will provide you with the tools and knowledge needed to make the mentorship experience impactful for both you and your mentees.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Success</div>
-            <div>
-              <h3>Success Stories</h3>
-              <div class="sub">Mentor Testimonials</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>"Being a mentor has been one of the most rewarding experiences of my career. I’ve had the opportunity to guide talented students through their academic and professional journeys, and in turn, I’ve learned a lot from their fresh perspectives. It's truly inspiring to watch them grow and succeed. I encourage any alumni or professional to join the ENTC Mentorship Program—it's an investment in both the future of engineering and in your personal development as a mentor." — Mentor, ENTC Mentorship Program</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Resources</div>
-            <div>
-              <h3>Resources for Mentors</h3>
-              <div class="sub">Mentor Support</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>As a mentor, you will have access to a variety of resources to support your mentorship journey. These include communication guidelines, best practices for mentorship, and a detailed onboarding presentation. You can also reach out to the program coordinators for additional support and clarification as needed. The goal is to ensure you feel equipped and confident in your ability to provide the best possible guidance to your mentees.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>
-          <strong>ENTC Department</strong> · Mentorship Programme
-          <div class="meta">For queries: <span class="mono">rahmanmfa.23@uom.lk</span> or <span class="mono">rahulb.23@uom.lk</span></div>
-        </div>
-        <div class="meta">© 2026 · Maintained by <span class="mono">E-Club of University of Moratuwa</span></div>
-      </div>
-    </div>
-  </footer>
-</body>
+      </footer>
+    </body>
 </html>
