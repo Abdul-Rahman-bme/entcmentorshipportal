@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ENTC Mentorship Portal</title>
+  <style>
+    /* Add some basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f6f8fb;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 300px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    .btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-mentor {
+      background-color: #0E1E84; /* Blue for mentors */
+      color: white;
+    }
+    .btn-mentee {
+      background-color: #F3B600; /* Yellow for mentees */
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Login</h1>
+    <p>Please select your role to proceed:</p>
+    <button class="btn btn-mentor" onclick="selectRole('mentor')">I am a Mentor</button>
+    <button class="btn btn-mentee" onclick="selectRole('mentee')">I am a Mentee</button>
+  </div>
+
+  <script>
+    function selectRole(role) {
+      // Store the selected role in localStorage
+      localStorage.setItem('userRole', role);
+      
+      // Redirect based on the selected role
+      if (role === 'mentor') {
+        window.location.href = 'mentors.html'; // Redirect to the mentor's page
+      } else if (role === 'mentee') {
+        window.location.href = 'mentees.html'; // Redirect to the mentee's page
+      }
+    }
+  </script>
+
+</body>
+</html>
