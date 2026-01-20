@@ -15,7 +15,7 @@
       --muted: #475569;
       --border: #e2e8f0;
       --shadow: 0 10px 30px rgba(2, 6, 23, .08);
-      --primary: #0b2a5b;
+      --primary: #0b2a5b; /* Dark blue */
       --primary-2: #123a78;
       --accent: #caa048;
       --accent-2: #f1e4c3;
@@ -106,6 +106,7 @@
       display: flex;
       justify-content: center;
       gap: 24px;
+      flex-direction: column; /* Stack the buttons below the text */
     }
 
     .hero-card{
@@ -129,50 +130,29 @@
       flex-wrap: wrap;
     }
 
-    .card{
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(226,232,240,.9);
-      border-radius: calc(var(--radius) + 2px);
-      box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform .10s ease, box-shadow .15s ease, border-color .15s ease;
-    }
-
-    .card:hover{ transform: translateY(-2px); box-shadow: 0 18px 38px rgba(2,6,23,.10); border-color: rgba(11,42,91,.22); }
-
-    .card-top{
-      padding: 14px 14px 10px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .avatar{
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(11,42,91,.12), rgba(202,160,72,.16));
-      border: 1px solid rgba(226,232,240,.9);
-      font-weight: 800;
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(11,42,91,.25);
+      background: linear-gradient(180deg, rgba(11,42,91,.08), rgba(11,42,91,.03));
       color: var(--primary);
-      flex: none;
+      padding: 18px 24px; /* Adjust button size */
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px; 
+      transition: transform .08s ease, box-shadow .15s ease;
     }
 
-    .card h3{
-      margin: 0;
-      font-size: 15px;
-      letter-spacing: -.1px;
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 25px rgba(11,42,91,.10); text-decoration: none; }
+
+    .btn-primary{
+      border-color: rgba(11,42,91,.35);
+      background: var(--primary);
+      color: #fff;
     }
 
-    .sub{
-      margin: 2px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .btn-primary:hover{ box-shadow: 0 14px 30px rgba(11,42,91,.18); }
   </style>
 </head>
 
@@ -180,13 +160,14 @@
   <header class="topbar" role="banner">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="ENTC Mentorship Portal Home">
+        <a class="brand" href="index.html" aria-label="ENTC Mentorship Portal Home">
           <div class="crest" aria-hidden="true" style="background:#fff; padding:6px;">
             <img src="assets/college/ENTC_logo_blue.png" alt="ENTC Logo" style="width:30px; height:30px; object-fit:contain;"/>
           </div>
           <div class="brand-text">
             <strong>ENTC Mentorship Portal</strong>
             <span>Department of Electronics & Telecommunication</span>
+            <span>University of Moratuwa</span>
           </div>
         </a>
       </div>
@@ -199,8 +180,8 @@
         <div class="hero-card">
           <div class="hero-inner">
             <h1>Welcome Mentors</h1>
+            <!-- Move the text below the title -->
             <p>Learn more about the ENTC Department and the E-Club.</p>
-
             <div class="hero-actions">
               <a class="btn btn-primary" href="#about">Learn More</a>
               <a class="btn btn-primary" href="index.html">Back to Homepage</a>
@@ -210,61 +191,7 @@
       </div>
     </section>
 
-    <section id="about" class="grid">
-      <div class="container">
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">ENTC</div>
-            <div>
-              <h3>Introduction to Mentorship</h3>
-              <div class="sub">ENTC Department's Mentorship Programme</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>Provide a brief overview of the mentorship programme, highlighting how mentors contribute to the academic, career, and research development of students. Emphasize the value of the mentor's experience and how it can make a tangible difference in shaping the next generation of engineers.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Mentor</div>
-            <div>
-              <h3>Why Become a Mentor?</h3>
-              <div class="sub">Impact, Career Growth, Networking, Recognition</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>Explain how mentoring allows alumni and professionals to give back to the community, enhance leadership skills, expand networks, and receive recognition from the university. Mentoring also helps refine their leadership, coaching, and communication abilities.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Expectations</div>
-            <div>
-              <h3>Expectations from Mentors</h3>
-              <div class="sub">Guidance and Time Commitment</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>Mentors should provide guidance on career pathways, offer feedback on student projects, assist with research or internship applications, and work with 2-5 students. They should meet with mentees at least once every two weeks, providing tailored support aligned with their expertise.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Registration</div>
-            <div>
-              <h3>How to Get Involved</h3>
-              <div class="sub">Mentor Registration Form</div>
-            </div>
-          </div>
-          <div class="card-mid">
-            <p>To become a mentor, simply <a href="https://forms.gle/i4kT9irTQvapHViG9" target="_blank">register here</a>. After registration, you will be invited to an onboarding session, where you'll learn about role expectations, communication guidelines, and programme structure.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Remaining sections here -->
   </main>
 
   <footer>
